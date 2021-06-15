@@ -1,24 +1,89 @@
+import icon_twinbarrel from './assets/icon_twinbarrel.png'
+import icon_rapidfire from './assets/icon_rapidfire.png'
+import icon_upgradebulled from './assets/icon_upgradebulled.png'
+import icon_heal from './assets/icon_heal.png'
+import parts_healthframe from './assets/parts_healthframe.png'
+import parts_healthgauge from './assets/parts_healthgauge.png'
+import parts_plane from './assets/parts_plane.png'
 console.log("imported:viewArea.js")
+
 const canvas = document.getElementById('view')
 const view = canvas.getContext('2d')
+
+//-----get window-size and attach it to canvas tag-----//
 const viewWidth = window.innerWidth
 const viewHeight = window.innerHeight
 canvas.width = viewWidth
 canvas.height = viewHeight
-const icon_heal = new Image()
-const icon_rapidfire = new Image()
-const icon_twinbarrel = new Image()
-const icon_upgradebulled = new Image()
-const parts_healthframe = new Image()
-const parts_healthgauge = new Image()
-const parts_plane = new Image()
-icon_heal.src = './icon_heal.png'
-icon_rapidfire.src = './icon_rapidfire.png'
-icon_twinbarrel.src = './icon_twinbarrel.png'
-icon_upgradebulled.src = './icon_upgradebulled.png'
-parts_healthframe.src = './parts_healthframe.png'
-parts_healthgauge.src = './parts_healthgauge.png'
-parts_plane.src = './parts_plane.png'
+
+//-----init image-----//
+const twinbarrel = new Image()
+const rapidfire = new Image()
+const upgradebulled = new Image()
+const heal = new Image()
+const healthframe = new Image()
+const healthgauge = new Image()
+const plane = new Image()
+
+//-----setting src-----//
+twinbarrel.src  = icon_twinbarrel 
+rapidfire.src  = icon_rapidfire 
+heal.src  = icon_heal 
+upgradebulled.src  = icon_upgradebulled 
+healthframe.src  = parts_healthframe 
+healthgauge.src  = parts_healthgauge 
+plane.src  = parts_plane 
+
+//-----loaded message define-----//
+loaded_icon_message = [false,false,false,false]
+loaded_healthItem_message = [false,false]
+loaded_plane_message = [false]
+
+let position_x = 50
+let position_y = 50
+
+heal.addEventListener("load",function(){
+  view.drawImage(heal,position_x,position_y)
+  position_y+=50
+  console.log("loaded: icon_heal.png")
+  }
+)
+rapidfire.addEventListener("load",function(){
+  view.drawImage(rapidfire,position_x,position_y)
+  position_y+=50
+  console.log("loaded: icon_rapidfire.png")
+  }
+)
+twinbarrel.addEventListener("load",function(){
+  view.drawImage(twinbarrel,position_x,position_y)
+  position_y+=50
+  console.log("loaded: icon_twinbarrel.png")
+  }
+)
+upgradebulled.addEventListener("load",function(){
+  view.drawImage(upgradebulled,position_x,position_y)
+  position_y+=50
+  console.log("loaded: icon_upgradebulled.png")
+  }
+)
+healthframe.addEventListener("load",function(){
+  view.drawImage(healthframe,position_x,position_y)
+  position_y+=50
+  console.log("loaded: parts_healthframe.png")
+  }
+)
+healthgauge.addEventListener("load",function(){
+  view.drawImage(healthgauge,position_x,position_y)
+  position_y+=50
+  console.log("loaded: parts_healthgauge.png")
+  }
+)
+plane.addEventListener("load",function(){
+  view.drawImage(plane,position_x,position_y)
+  position_y+=50
+  console.log("loaded: parts_plane.png")
+  }
+)
 
 
 const line = (x1,y1,x2,y2) => {
