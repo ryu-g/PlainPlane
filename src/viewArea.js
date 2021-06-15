@@ -74,18 +74,21 @@ healthframe.addEventListener("load",function(){
   view.drawImage(healthframe,position_x,position_y)
   position_y+=50
   console.log("loaded: parts_healthframe.png")
+  loaded_healthItem_message[0] = true
   }
 )
 healthgauge.addEventListener("load",function(){
   view.drawImage(healthgauge,position_x,position_y)
   position_y+=50
   console.log("loaded: parts_healthgauge.png")
+  loaded_healthItem_message[1] = true
   }
 )
 plane.addEventListener("load",function(){
   view.drawImage(plane,position_x,position_y)
   position_y+=50
   console.log("loaded: parts_plane.png")
+  loaded_plane_message[0] = true
   }
 )
 
