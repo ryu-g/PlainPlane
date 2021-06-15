@@ -35,9 +35,9 @@ healthgauge.src  = parts_healthgauge
 plane.src  = parts_plane 
 
 //-----loaded message define-----//
-loaded_icon_message = [false,false,false,false]
-loaded_healthItem_message = [false,false]
-loaded_plane_message = [false]
+const loaded_icon_message = [false,false,false,false]
+const loaded_healthItem_message = [false,false]
+const loaded_plane_message = [false]
 
 let position_x = 50
 let position_y = 50
@@ -46,24 +46,28 @@ heal.addEventListener("load",function(){
   view.drawImage(heal,position_x,position_y)
   position_y+=50
   console.log("loaded: icon_heal.png")
+  loaded_icon_message[3] = true
   }
 )
 rapidfire.addEventListener("load",function(){
   view.drawImage(rapidfire,position_x,position_y)
   position_y+=50
   console.log("loaded: icon_rapidfire.png")
+  loaded_icon_message[1] = true
   }
 )
 twinbarrel.addEventListener("load",function(){
   view.drawImage(twinbarrel,position_x,position_y)
   position_y+=50
   console.log("loaded: icon_twinbarrel.png")
+  loaded_icon_message[0] = true
   }
 )
 upgradebulled.addEventListener("load",function(){
   view.drawImage(upgradebulled,position_x,position_y)
   position_y+=50
   console.log("loaded: icon_upgradebulled.png")
+  loaded_icon_message[2] = true
   }
 )
 healthframe.addEventListener("load",function(){
@@ -84,7 +88,6 @@ plane.addEventListener("load",function(){
   console.log("loaded: parts_plane.png")
   }
 )
-
 
 const line = (x1,y1,x2,y2) => {
   view.fillRect(0,255,0,100);
