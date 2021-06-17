@@ -11,10 +11,16 @@ const canvas = document.getElementById('view')
 const view = canvas.getContext('2d')
 
 //-----get window-size and attach it to canvas tag-----//
-const viewWidth = window.innerWidth
-const viewHeight = window.innerHeight
-canvas.width = viewWidth
-canvas.height = viewHeight
+const dpr = window.devicePixelRatio || 1;
+const viewWidth = 350 //window.innerWidth
+const viewHeight = 733 //window.innerHeight
+console.log(`w:h = ${viewWidth}:${viewHeight}`)
+
+canvas.width = viewWidth * dpr
+canvas.height = viewHeight * dpr
+view.scale(dpr,dpr)
+canvas.style.width = viewWidth + 'px';
+canvas.style.height = viewHeight + 'px';
 
 //-----init image-----//
 const twinbarrel = new Image()
@@ -26,79 +32,126 @@ const healthgauge = new Image()
 const plane = new Image()
 
 //-----setting src-----//
-twinbarrel.src  = icon_twinbarrel 
-rapidfire.src  = icon_rapidfire 
-heal.src  = icon_heal 
-upgradebulled.src  = icon_upgradebulled 
-healthframe.src  = parts_healthframe 
-healthgauge.src  = parts_healthgauge 
-plane.src  = parts_plane 
-
+const init = () =>{
+  twinbarrel.src  = icon_twinbarrel 
+  rapidfire.src  = icon_rapidfire 
+  heal.src  = icon_heal 
+  upgradebulled.src  = icon_upgradebulled 
+  healthframe.src  = parts_healthframe 
+  healthgauge.src  = parts_healthgauge 
+  plane.src  = parts_plane 
+  console.log("loading images.....")
+  window.requestAnimationFrame(draw)
+}
 //-----loaded message define-----//
 const loaded_icon_message = [false,false,false,false]
 const loaded_healthItem_message = [false,false]
 const loaded_plane_message = [false]
 
-let position_x = 50
-let position_y = 50
-
 heal.addEventListener("load",function(){
-  view.drawImage(heal,position_x,position_y)
-  position_y+=50
-  console.log("loaded: icon_heal.png")
+  console.log("- loaded: icon_heal.png")
   loaded_icon_message[3] = true
   }
 )
 rapidfire.addEventListener("load",function(){
-  view.drawImage(rapidfire,position_x,position_y)
-  position_y+=50
-  console.log("loaded: icon_rapidfire.png")
+  console.log("- loaded: icon_rapidfire.png")
   loaded_icon_message[1] = true
   }
 )
 twinbarrel.addEventListener("load",function(){
-  view.drawImage(twinbarrel,position_x,position_y)
-  position_y+=50
-  console.log("loaded: icon_twinbarrel.png")
+  console.log("- loaded: icon_twinbarrel.png")
   loaded_icon_message[0] = true
   }
 )
 upgradebulled.addEventListener("load",function(){
-  view.drawImage(upgradebulled,position_x,position_y)
-  position_y+=50
-  console.log("loaded: icon_upgradebulled.png")
+  console.log("- loaded: icon_upgradebulled.png")
   loaded_icon_message[2] = true
   }
 )
 healthframe.addEventListener("load",function(){
-  view.drawImage(healthframe,position_x,position_y)
-  position_y+=50
-  console.log("loaded: parts_healthframe.png")
+  console.log("- loaded: parts_healthframe.png")
   loaded_healthItem_message[0] = true
   }
 )
 healthgauge.addEventListener("load",function(){
-  view.drawImage(healthgauge,position_x,position_y)
-  position_y+=50
-  console.log("loaded: parts_healthgauge.png")
+  console.log("- loaded: parts_healthgauge.png")
   loaded_healthItem_message[1] = true
   }
 )
 plane.addEventListener("load",function(){
-  view.drawImage(plane,position_x,position_y)
-  position_y+=50
-  console.log("loaded: parts_plane.png")
+  console.log("- loaded: parts_plane.png")
   loaded_plane_message[0] = true
   }
 )
 
-const line = (x1,y1,x2,y2) => {
-  view.fillRect(0,255,0,100);
-  view.moveTo(x1, y1)
-  view.lineTo(x2,y2)
-  view.closePath()
-  view.stroke()
+//-----define drawing OptionIcons function-----//
+function drawPlane(plane_posx, plane_posy, size, flag){
+  let itemAllLoaded = true
+  for(let judge of flag){
+    if(!judge){
+      itemAllLoaded = false
+      break
+    }
+  }
+  if(itemAllLoaded){
+    view.drawImage(plane,plane_posx, plane_posy,size,size)
+  }
 }
 
+function drawHealth(Health_posx, Health_posy, w, flag){
+  const health = 20
+  const gauge_dot_w = w * 0.1
+  let itemAllLoaded = true
+  for(let judge of flag){
+    if(!judge){
+      itemAllLoaded = false
+      break
+    }
+  }
+  if(itemAllLoaded){
+    view.drawImage(healthframe,Health_posx,Health_posy,w*0.9,40)
+    for(let i = 0 ; i < health; i++)
+      view.drawImage(healthgauge,
+                    5 + Health_posx + (w * 0.04) * i ,
+                    10 + Health_posy + gauge_dot_w * 0.1 ,
+                    gauge_dot_w, gauge_dot_w)
+  }
+}
 
-console.log(`w:h = ${viewWidth}:${viewHeight}`)
+function drawScore(score, score_posx, score_posy){
+  let s = 0
+  s += score
+  view.font = "14px sans-serif";
+  view.fillStyle = "#94FFA0"
+  view.fillText(`SCORE : ${s}`, score_posx, score_posy);
+}
+
+function drawOptions(Options_posx, Options_posy, size, gap, flag){
+  let itemAllLoaded = true
+  for(let judge of flag){
+    if(!judge){
+      itemAllLoaded = false
+      break
+    }
+  }
+  if(itemAllLoaded){
+    view.drawImage(twinbarrel, Options_posx, Options_posy,  size, size)
+    view.drawImage(rapidfire, Options_posx + size + gap, Options_posy,  size, size)
+    view.drawImage(upgradebulled, Options_posx + (size + gap) * 2 , Options_posy,  size, size)
+    view.drawImage(heal, Options_posx + (size + gap) * 3 , Options_posy,  size, size)
+    view.drawImage(heal, Options_posx + (size + gap) * 4 , Options_posy,  size, size)
+    view.drawImage(heal, Options_posx + (size + gap) * 5 , Options_posy,  size, size)
+  }
+}
+
+//----- DRAWING images-----//
+function draw(){
+  view.clearRect(0,0,viewWidth,viewHeight)
+  drawPlane(viewWidth/2, viewHeight/2, viewWidth/6, loaded_plane_message)
+  drawHealth(15,viewHeight*0.8, viewWidth*0.65, loaded_healthItem_message )
+  drawScore(3429, 15, viewHeight*0.88)
+  drawOptions(15, viewHeight*0.9, viewWidth*0.13, 10, loaded_icon_message)
+  window.requestAnimationFrame(draw)
+}
+
+init()
