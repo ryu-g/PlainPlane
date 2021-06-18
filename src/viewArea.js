@@ -9,6 +9,12 @@ console.log("imported:viewArea.js")
 
 const canvas = document.getElementById('view')
 const view = canvas.getContext('2d')
+const mousepos = {x : 0, y: 0}
+canvas.addEventListener('mousemove', (e) => {
+  let rect = e.target.getBoundingClientRect()
+  mousepos.x = Math.floor(e.clientX - rect.left)
+  mousepos.y = Math.floor(e.clientY - rect.top)
+})
 
 //-----get window-size and attach it to canvas tag-----//
 const dpr = window.devicePixelRatio || 1;
@@ -85,7 +91,7 @@ plane.addEventListener("load",function(){
 )
 
 //-----define drawing OptionIcons function-----//
-function drawPlane(plane_posx, plane_posy, size, flag){
+function drawPlane(plane_posx, plane_posy,flag){
   let itemAllLoaded = true
   for(let judge of flag){
     if(!judge){
@@ -94,13 +100,12 @@ function drawPlane(plane_posx, plane_posy, size, flag){
     }
   }
   if(itemAllLoaded){
-    view.drawImage(plane,plane_posx, plane_posy,size,size)
+    const size = plane.width / 10
+    view.drawImage(plane,plane_posx - size/2, plane_posy - size/2,size,size)
   }
 }
 
-function drawHealth(Health_posx, Health_posy, w, flag){
-  const health = 20
-  const gauge_dot_w = w * 0.1
+function drawHealth(Health_posx, Health_posy, flag){
   let itemAllLoaded = true
   for(let judge of flag){
     if(!judge){
@@ -109,12 +114,22 @@ function drawHealth(Health_posx, Health_posy, w, flag){
     }
   }
   if(itemAllLoaded){
-    view.drawImage(healthframe,Health_posx,Health_posy,w*0.9,40)
-    for(let i = 0 ; i < health; i++)
-      view.drawImage(healthgauge,
-                    5 + Health_posx + (w * 0.04) * i ,
-                    10 + Health_posy + gauge_dot_w * 0.1 ,
-                    gauge_dot_w, gauge_dot_w)
+    const health = 22
+    const gauge_dot_w = healthgauge.width / 4
+    const gauge_dot_h = healthgauge.height / 4
+    const gauge_dot_gap = gauge_dot_w * 0.4
+    const frame_w = healthframe.width / 4
+    const frame_h = healthframe.height / 4
+    view.drawImage(healthframe,Health_posx,Health_posy,frame_w,frame_h)
+    for(let i = 0 ; i < health; i++){
+      view.drawImage
+        (
+          healthgauge,
+          10 + Health_posx + gauge_dot_gap * i,
+          Health_posy+20,
+          gauge_dot_w,gauge_dot_h
+        )
+      }
   }
 }
 
@@ -139,18 +154,16 @@ function drawOptions(Options_posx, Options_posy, size, gap, flag){
     view.drawImage(rapidfire, Options_posx + size + gap, Options_posy,  size, size)
     view.drawImage(upgradebulled, Options_posx + (size + gap) * 2 , Options_posy,  size, size)
     view.drawImage(heal, Options_posx + (size + gap) * 3 , Options_posy,  size, size)
-    view.drawImage(heal, Options_posx + (size + gap) * 4 , Options_posy,  size, size)
-    view.drawImage(heal, Options_posx + (size + gap) * 5 , Options_posy,  size, size)
   }
 }
 
 //----- DRAWING images-----//
 function draw(){
   view.clearRect(0,0,viewWidth,viewHeight)
-  drawPlane(viewWidth/2, viewHeight/2, viewWidth/6, loaded_plane_message)
-  drawHealth(15,viewHeight*0.8, viewWidth*0.65, loaded_healthItem_message )
-  drawScore(3429, 15, viewHeight*0.88)
-  drawOptions(15, viewHeight*0.9, 55, 10, loaded_icon_message)
+  drawPlane(mousepos.x, mousepos.y,loaded_plane_message)
+  drawHealth(15, 30, loaded_healthItem_message )
+  drawScore(3429, 15, 110)
+  drawOptions(15, 140, 80, 10, loaded_icon_message)
   window.requestAnimationFrame(draw)
 }
 
