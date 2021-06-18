@@ -12,8 +12,8 @@ const view = canvas.getContext('2d')
 
 //-----get window-size and attach it to canvas tag-----//
 const dpr = window.devicePixelRatio || 1;
-const viewWidth = 350 //window.innerWidth
-const viewHeight = 733 //window.innerHeight
+const viewWidth = 1024 //window.innerWidth
+const viewHeight = 600 //window.innerHeight
 console.log(`w:h = ${viewWidth}:${viewHeight}`)
 
 canvas.width = viewWidth * dpr
@@ -150,7 +150,7 @@ function draw(){
   drawPlane(viewWidth/2, viewHeight/2, viewWidth/6, loaded_plane_message)
   drawHealth(15,viewHeight*0.8, viewWidth*0.65, loaded_healthItem_message )
   drawScore(3429, 15, viewHeight*0.88)
-  drawOptions(15, viewHeight*0.9, viewWidth*0.13, 10, loaded_icon_message)
+  drawOptions(15, viewHeight*0.9, 55, 10, loaded_icon_message)
   window.requestAnimationFrame(draw)
 }
 
