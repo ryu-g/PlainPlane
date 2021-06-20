@@ -6,6 +6,9 @@ canvas.addEventListener('mousemove', (e) => {
   mousepos.x = Math.floor(e.clientX - rect.left)
   mousepos.y = Math.floor(e.clientY - rect.top)
 })
+canvas.addEventListener("mousedown", (e) => {
+  console.log("!!!!!!!!!clicked!!!!!!!!!")
+})
 
 const dpr = window.devicePixelRatio || 1;
 const viewWidth = 1024 //window.innerWidth
