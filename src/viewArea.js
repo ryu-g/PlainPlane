@@ -11,7 +11,7 @@ function draw(){
   drawOptions(leftSide, 90, view)
 
   rect( viewWidth/2, 50, viewWidth/2 - 40, viewHeight-100, view)
-  drawPlane(mousepos.x, mousepos.y, view)
+  drawPlane(mousepos.x, viewHeight-90, view)
   drawHealth(viewWidth/2, viewHeight-34, view )
   drawHealth(viewWidth/2, 17, view )
   window.requestAnimationFrame(draw)

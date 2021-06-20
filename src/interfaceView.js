@@ -128,8 +128,11 @@ function drawPlane(plane_posx, plane_posy, view){
     }
   }
   if(itemAllLoaded){
+    let x = plane_posx
+    if(plane_posx < 535){ x = 535 }
+    if(960 < plane_posx){ x = 960 }
     const size = plane.width / 10
-    view.drawImage(plane,plane_posx - size/2, plane_posy - size/2,size,size)
+    view.drawImage( plane, x - size/2, plane_posy - size/2, size, size)
   }
 }
 
