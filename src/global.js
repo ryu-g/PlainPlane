@@ -5,7 +5,7 @@ canvas.addEventListener('mousemove', (e) => {
   let rect = e.target.getBoundingClientRect()
   mousepos.x = Math.floor(e.clientX - rect.left)
   mousepos.y = Math.floor(e.clientY - rect.top)
-  console.log(`${mousepos.x} : ${mousepos.y}`)
+  // console.log(`${mousepos.x} : ${mousepos.y}`)
 })
 canvas.addEventListener("mousedown", (e) => {
   console.log("!!!!!!!!!clicked!!!!!!!!!")
