@@ -15,8 +15,9 @@ canvas.style.height = viewHeight + 'px'
 const mousepos = {x : 0, y: 0}
 
 const plane = new Plane(0, 0)
-const BULLETS_MAX_COUNT = 400
+const BULLETS_MAX_COUNT = 5000
 const bullets = new Array(BULLETS_MAX_COUNT)
+const kakashi_bullets = new Array(BULLETS_MAX_COUNT)
 const kakashi = new Kakashi(getRandomInt(542,945), 60)
 
 
@@ -36,25 +37,31 @@ canvas.addEventListener('mousemove', (e) => {
 for(let i = 0; i < BULLETS_MAX_COUNT; i++){
   bullets[i] = new Bullet()
 }
+for(let i = 0; i < BULLETS_MAX_COUNT; i++){
+  kakashi_bullets[i] = new KakashiBullet()
+}
 
 canvas.addEventListener("mousedown", (e) => {
-  // fire = true
-  // if(fire){
     for(let i = 0; i < bullets.length; i++){
-      if(!bullets[i].alive){
-        bullets[i].set(plane.posx, plane.posy, 4)
-        bullets[i+4].set(plane.posx, plane.posy-50, 4)
+      if(!bullets[i].alive ){ // bullet[0] = alive  bullet[1] = fase
+        bullets[i].set(plane.posx, plane.posy, 2)
         break
       }
     }
-  }  
-// }
+  }
 )
-canvas.addEventListener("mouseup", (e) => {
-  // fire = false
-})
 
-export { viewWidth, viewHeight, view, BULLETS_MAX_COUNT, bullets }
+canvas.addEventListener("mouseup", (e) => {
+  for(let i = 0; i < kakashi_bullets.length; i++){
+    if(!kakashi_bullets[i].alive ){
+      kakashi_bullets[i].set(kakashi.posx+20, kakashi.posy, 2)
+      break
+    }
+  }
+}
+)
+
+export { viewWidth, viewHeight, view, BULLETS_MAX_COUNT, bullets, kakashi_bullets }
 export { plane }
 export { canvas }
 export { kakashi }

@@ -1,10 +1,10 @@
 import {
   viewWidth,viewHeight, view,
-  bullets } from './global.js'
-import { shootBullets  } from './functions_logics'
+  bullets,kakashi_bullets} from './global.js'
+import { shootBullets, kakashiShootBullets} from './functions_logics'
 import { loadImages, drawPlane,drawKakashiHealth,drawPlayerHealth, drawScore, drawOptions, drawKeyMarkers, drawKakashi } from './interfaceView.js'
 import { rect } from './functions_canvas.js'
-import { plane, kakashi } from './global.js'
+import { plane, kakashi} from './global.js'
 console.log("imported:viewArea.js")
 const leftSide = 40
 
@@ -18,6 +18,7 @@ function draw(){
   drawPlayerHealth(viewWidth/2, viewHeight-34, view )
   drawKakashiHealth(viewWidth/2, 17, view)
   shootBullets(bullets, view)
+  kakashiShootBullets(kakashi_bullets, view)
   drawKakashi(kakashi.posx, kakashi.posy, view)
 
   window.requestAnimationFrame(draw)
