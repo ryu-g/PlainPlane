@@ -1,3 +1,4 @@
+import { kakashi, plane } from './global.js'
 import button_q from './assets/button_q@2x.png'
 import button_w from './assets/button_w@2x.png'
 import button_e from './assets/button_e@2x.png'
@@ -30,12 +31,12 @@ const upgradebulled_c = new Image()
 const heal = new Image()
 const healthLabel = new Image()
 const healthgauge = new Image()
-const plane = new Image()
+const plane_img = new Image()
 const bullet_elipse = new Image()
 const bullet_triangle = new Image()
 const bullet_rect = new Image()
 const bullet_star = new Image()
-const kakashi = new Image()
+const kakashi_img = new Image()
 
 const loaded_buttons_message = [false,false,false,false]
 const loaded_icon_message = [false,false,false,false,false,false,false]
@@ -57,12 +58,12 @@ function loadImages(){
   upgradebulled_c.src = option_powerup3 
   healthLabel.src = health_label 
   healthgauge.src = health_dot 
-  plane.src = parts_plane
+  plane_img.src = parts_plane
   bullet_elipse.src = bullet_1
   bullet_triangle.src = bullet_2
   bullet_rect.src = bullet_3
   bullet_star.src = bullet_4
-  kakashi.src = kakashi_path
+  kakashi_img.src = kakashi_path
   console.log("loading images.....")
 }
 
@@ -131,7 +132,7 @@ healthgauge.addEventListener("load",function(){
   loaded_healthItem_message[1] = true
   }
 )
-plane.addEventListener("load",function(){
+plane_img.addEventListener("load",function(){
   console.log("- loaded: parts_plane.png")
   loaded_plane_message[0] = true
   }
@@ -168,14 +169,14 @@ function drawPlane(plane_posx, plane_posy, view){
     }
   }
   if(itemAllLoaded){
-    const size = plane.width / 10
+    const size = plane_img.width / 10
     // view.drawImage( plane, x - size/2, plane_posy - size/2, size, size)
-    view.drawImage( plane, plane_posx - size/2, plane_posy - size/2, size, size)
+    view.drawImage(plane_img, plane_posx - size/2, plane_posy - size/2, size, size)
   }
 }
 
 function drawKakashi(kakashi_x, kakashi_y, view){
-  view.drawImage(kakashi, kakashi_x, kakashi_y)
+  view.drawImage(kakashi_img, kakashi_x, kakashi_y)
 }
 
 function drawKeyMarkers(marker_x, marker_y, view){
@@ -197,7 +198,7 @@ function drawKeyMarkers(marker_x, marker_y, view){
   }
 }
 
-function drawHealth(Health_posx, Health_posy, view){
+function drawKakashiHealth(Health_posx, Health_posy, view){
   let itemAllLoaded = true
   for(let judge of loaded_healthItem_message){
     if(!judge){
@@ -206,7 +207,7 @@ function drawHealth(Health_posx, Health_posy, view){
     }
   }
   if(itemAllLoaded){
-    const health = 40
+    const health = kakashi.health
     const gauge_dot_w = healthgauge.width / 2
     const gauge_dot_h = healthgauge.height / 2
     const gauge_dot_gap = 2
@@ -224,6 +225,36 @@ function drawHealth(Health_posx, Health_posy, view){
       }
   }
 }
+
+function drawPlayerHealth(Health_posx, Health_posy, view){
+  let itemAllLoaded = true
+  for(let judge of loaded_healthItem_message){
+    if(!judge){
+      itemAllLoaded = false
+      break
+    }
+  }
+  if(itemAllLoaded){
+    const health = plane.health
+    const gauge_dot_w = healthgauge.width / 2
+    const gauge_dot_h = healthgauge.height / 2
+    const gauge_dot_gap = 2
+    const label_w = healthLabel.width / 2
+    const label_h = healthLabel.height / 2
+    view.drawImage(healthLabel, Health_posx, Health_posy, label_w, label_h)
+    for(let i = 0 ; i < health; i++){
+      view.drawImage
+        (
+          healthgauge,
+          Health_posx + label_w + gauge_dot_gap + (gauge_dot_w + gauge_dot_gap) * i,
+          Health_posy,
+          gauge_dot_w,gauge_dot_h
+        )
+      }
+  }
+}
+
+
 
 function drawScore(score, score_posx, score_posy, view){
   let s = 0
@@ -260,5 +291,5 @@ function drawBullets(x, y, view){
   view.drawImage(bullet_star, x, y)
 }
 
-export{loadImages, drawPlane, drawHealth, drawScore, drawOptions, drawKeyMarkers, drawBullets, drawKakashi}
+export{loadImages, drawPlane, drawKakashiHealth, drawPlayerHealth, drawScore, drawOptions, drawKeyMarkers, drawBullets, drawKakashi}
 export{ bullet_elipse }
