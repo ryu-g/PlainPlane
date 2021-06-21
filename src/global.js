@@ -33,11 +33,21 @@ for(let i = 0; i < BULLETS_MAX_COUNT; i++){
 }
 
 canvas.addEventListener("mousedown", (e) => {
-  fire = true
-  console.log(`fire! : ${fire}`)
-})
+  // fire = true
+  // if(fire){
+    for(let i = 0; i < bullets.length; i++){
+      if(!bullets[i].alive){
+        bullets[i].set(plane.posx, plane.posy, 4)
+        bullets[i+4].set(plane.posx, plane.posy-50, 4)
+        break
+      }
+    }
+    console.log(`fire! ${fire}`)
+  }  
+// }
+)
 canvas.addEventListener("mouseup", (e) => {
-  fire = false
+  // fire = false
 })
 
 export { viewWidth, viewHeight, view, BULLETS_MAX_COUNT, bullets, fire }

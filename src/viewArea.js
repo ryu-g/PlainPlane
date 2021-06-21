@@ -17,7 +17,6 @@ function draw(){
   drawPlane(plane.posx, viewHeight-90, view)
   drawHealth(viewWidth/2, viewHeight-34, view )
   drawHealth(viewWidth/2, 17, view)
-  makeAliveBullets(plane, fire, bullets)
   shootBullets(bullets, view)
 
   window.requestAnimationFrame(draw)
