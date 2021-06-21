@@ -12,6 +12,10 @@ import option_heal from './assets/option_heal@2x.png'
 import health_label from './assets/health_label@2x.png'
 import health_dot from './assets/health_dot@2x.png'
 import parts_plane from './assets/parts_plane.png'
+import bullet_1 from './assets/bullet_1.png'
+import bullet_2 from './assets/bullet_2.png'
+import bullet_3 from './assets/bullet_3.png'
+import bullet_4 from './assets/bullet_4.png'
 
 const marker_q = new Image()
 const marker_w = new Image()
@@ -27,11 +31,16 @@ const heal = new Image()
 const healthLabel = new Image()
 const healthgauge = new Image()
 const plane = new Image()
+const bullet_elipse = new Image()
+const bullet_triangle = new Image()
+const bullet_rect = new Image()
+const bullet_star = new Image()
 
 const loaded_buttons_message = [false,false,false,false]
 const loaded_icon_message = [false,false,false,false,false,false,false]
 const loaded_healthItem_message = [false,false]
 const loaded_plane_message = [false]
+const loaded_bullet_message = [false,false,false,false]
 
 function initInterface(){
   marker_q.src = button_q
@@ -47,10 +56,15 @@ function initInterface(){
   upgradebulled_c.src = option_powerup3 
   healthLabel.src = health_label 
   healthgauge.src = health_dot 
-  plane.src = parts_plane 
+  plane.src = parts_plane
+  bullet_elipse.src = bullet_1
+  bullet_triangle.src = bullet_2
+  bullet_rect.src = bullet_3
+  bullet_star.src = bullet_4
   console.log("loading images.....")
 }
 
+// ---- option interface loading message -----
 marker_q.addEventListener("load", function(){
   console.log("- loaded: button_q.png")
   loaded_buttons_message[0] = true
@@ -103,6 +117,8 @@ upgradebulled_a.addEventListener("load",function(){
   loaded_icon_message[6] = true
   }
 )
+
+// ---- health item loading message ----
 healthLabel.addEventListener("load",function(){
   console.log("- loaded: health_label.png")
   loaded_healthItem_message[0] = true
@@ -116,6 +132,28 @@ healthgauge.addEventListener("load",function(){
 plane.addEventListener("load",function(){
   console.log("- loaded: parts_plane.png")
   loaded_plane_message[0] = true
+  }
+)
+
+// ---- bullet loading message ----//
+bullet_elipse.addEventListener("load", function(){
+  console.log("- loaded: bullet_elipse")
+  loaded_bullet_message[0] = true
+  }
+)
+bullet_triangle.addEventListener("load", function(){
+  console.log("- loaded: bullet_triangle")
+  loaded_bullet_message[1] = true
+  }
+)
+bullet_rect.addEventListener("load", function(){
+  console.log("- loaded: bullet_rect")
+  loaded_bullet_message[2] = true
+  }
+)
+bullet_star.addEventListener("load", function(){
+  console.log("- loaded: bullet_star")
+  loaded_bullet_message[3] = true
   }
 )
 
