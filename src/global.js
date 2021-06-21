@@ -1,4 +1,7 @@
 import { Plane, Bullet } from './Plane.js'
+import { Kakashi, KakashiBullet } from './kakashi.js'
+import { getRandomInt } from './functions_logics.js'
+import { drawKakashi } from './interfaceView'
 const canvas = document.getElementById('view')
 const view = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1;
@@ -14,7 +17,8 @@ const mousepos = {x : 0, y: 0}
 const plane = new Plane(0, 0)
 const BULLETS_MAX_COUNT = 400
 const bullets = new Array(BULLETS_MAX_COUNT)
-let fire = false
+const kakashi = new Kakashi(getRandomInt(542,945), 60)
+
 
 console.log(`${plane.x}, ${plane.y}`)
 
@@ -26,6 +30,7 @@ canvas.addEventListener('mousemove', (e) => {
   else if (960 < mousepos.x) { plane.posx = 960} 
   else { plane.posx = mousepos.x} 
   plane.posy = viewHeight-90
+  // console.log(`${mousepos.x}, ${mousepos.y}`)
 })
 
 for(let i = 0; i < BULLETS_MAX_COUNT; i++){
@@ -42,7 +47,6 @@ canvas.addEventListener("mousedown", (e) => {
         break
       }
     }
-    console.log(`fire! ${fire}`)
   }  
 // }
 )
@@ -50,6 +54,7 @@ canvas.addEventListener("mouseup", (e) => {
   // fire = false
 })
 
-export { viewWidth, viewHeight, view, BULLETS_MAX_COUNT, bullets, fire }
+export { viewWidth, viewHeight, view, BULLETS_MAX_COUNT, bullets }
 export { plane }
 export { canvas }
+export { kakashi }

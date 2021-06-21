@@ -1,15 +1,15 @@
 import {
   viewWidth,viewHeight, view,
-  bullets, fire } from './global.js'
-import { shootBullets, makeAliveBullets } from './functions_logics'
-import { loadImages, drawPlane,drawHealth, drawScore, drawOptions, drawKeyMarkers, drawBullets } from './interfaceView.js'
+  bullets } from './global.js'
+import { shootBullets  } from './functions_logics'
+import { loadImages, drawPlane,drawHealth, drawScore, drawOptions, drawKeyMarkers, drawKakashi } from './interfaceView.js'
 import { rect } from './functions_canvas.js'
-import { plane } from './global.js'
+import { plane, kakashi } from './global.js'
 console.log("imported:viewArea.js")
 const leftSide = 40
 
 function draw(){
-  view.clearRect(0,0,viewWidth,viewHeight)
+  view.clearRect(0,0,viewWidth,viewHeight) 
   drawScore(3420000000009, leftSide, 50, view)
   drawKeyMarkers(leftSide, 60, view)
   drawOptions(leftSide, 90, view)
@@ -18,6 +18,7 @@ function draw(){
   drawHealth(viewWidth/2, viewHeight-34, view )
   drawHealth(viewWidth/2, 17, view)
   shootBullets(bullets, view)
+  drawKakashi(kakashi.posx, kakashi.posy, view)
 
   window.requestAnimationFrame(draw)
 }

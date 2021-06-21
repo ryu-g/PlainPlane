@@ -9,4 +9,8 @@ function shootBullets(bullets, view){
   }
 }
 
-export {shootBullets}
+function getRandomInt(min, max) {
+  return Math.floor(min + Math.random() * ( max - min ) ) 
+}
+
+export {shootBullets,  getRandomInt}

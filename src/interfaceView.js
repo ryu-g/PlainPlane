@@ -16,6 +16,7 @@ import bullet_1 from './assets/bullet_1.png'
 import bullet_2 from './assets/bullet_2.png'
 import bullet_3 from './assets/bullet_3.png'
 import bullet_4 from './assets/bullet_4@2x.png'
+import kakashi_path from './assets/kakashi@2x.png'
 const marker_q = new Image()
 const marker_w = new Image()
 const marker_e = new Image()
@@ -34,6 +35,7 @@ const bullet_elipse = new Image()
 const bullet_triangle = new Image()
 const bullet_rect = new Image()
 const bullet_star = new Image()
+const kakashi = new Image()
 
 const loaded_buttons_message = [false,false,false,false]
 const loaded_icon_message = [false,false,false,false,false,false,false]
@@ -60,6 +62,7 @@ function loadImages(){
   bullet_triangle.src = bullet_2
   bullet_rect.src = bullet_3
   bullet_star.src = bullet_4
+  kakashi.src = kakashi_path
   console.log("loading images.....")
 }
 
@@ -171,6 +174,10 @@ function drawPlane(plane_posx, plane_posy, view){
   }
 }
 
+function drawKakashi(kakashi_x, kakashi_y, view){
+  view.drawImage(kakashi, kakashi_x, kakashi_y)
+}
+
 function drawKeyMarkers(marker_x, marker_y, view){
   let itemAllLoaded = true
   for(let judge of loaded_buttons_message){
@@ -253,5 +260,5 @@ function drawBullets(x, y, view){
   view.drawImage(bullet_star, x, y)
 }
 
-export{loadImages, drawPlane, drawHealth, drawScore, drawOptions, drawKeyMarkers, drawBullets}
+export{loadImages, drawPlane, drawHealth, drawScore, drawOptions, drawKeyMarkers, drawBullets, drawKakashi}
 export{ bullet_elipse }
