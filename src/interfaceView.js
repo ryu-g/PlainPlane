@@ -42,7 +42,7 @@ const loaded_healthItem_message = [false,false]
 const loaded_plane_message = [false]
 const loaded_bullet_message = [false,false,false,false]
 
-function initInterface(){
+function loadImages(){
   marker_q.src = button_q
   marker_w.src = button_w
   marker_e.src = button_e
@@ -252,4 +252,4 @@ function drawOptions(Options_posx, Options_posy, view){
   }
 }
 
-export{initInterface, drawPlane, drawHealth, drawScore, drawOptions, drawKeyMarkers}
+export{loadImages, drawPlane, drawHealth, drawScore, drawOptions, drawKeyMarkers}

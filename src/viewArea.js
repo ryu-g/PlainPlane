@@ -1,5 +1,5 @@
 import { viewWidth, viewHeight, view, mousepos } from './global.js'
-import { initInterface, drawPlane,drawHealth, drawScore, drawOptions, drawKeyMarkers } from './interfaceView.js'
+import { loadImages, drawPlane,drawHealth, drawScore, drawOptions, drawKeyMarkers } from './interfaceView.js'
 import { rect } from './functions_canvas.js'
 console.log("imported:viewArea.js")
 const leftSide = 40
@@ -21,5 +21,5 @@ function display(){
   window.requestAnimationFrame(draw)
 }
 
-initInterface()
+loadImages()
 export {display}
