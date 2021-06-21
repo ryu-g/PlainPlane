@@ -15,8 +15,7 @@ import parts_plane from './assets/parts_plane.png'
 import bullet_1 from './assets/bullet_1.png'
 import bullet_2 from './assets/bullet_2.png'
 import bullet_3 from './assets/bullet_3.png'
-import bullet_4 from './assets/bullet_4.png'
-
+import bullet_4 from './assets/bullet_4@2x.png'
 const marker_q = new Image()
 const marker_w = new Image()
 const marker_e = new Image()
@@ -166,11 +165,9 @@ function drawPlane(plane_posx, plane_posy, view){
     }
   }
   if(itemAllLoaded){
-    let x = plane_posx
-    if(plane_posx < 535){ x = 535 }
-    if(960 < plane_posx){ x = 960 }
     const size = plane.width / 10
-    view.drawImage( plane, x - size/2, plane_posy - size/2, size, size)
+    // view.drawImage( plane, x - size/2, plane_posy - size/2, size, size)
+    view.drawImage( plane, plane_posx - size/2, plane_posy - size/2, size, size)
   }
 }
 
@@ -252,4 +249,9 @@ function drawOptions(Options_posx, Options_posy, view){
   }
 }
 
-export{loadImages, drawPlane, drawHealth, drawScore, drawOptions, drawKeyMarkers}
+function drawBullets(x, y, view){
+  view.drawImage(bullet_star, x, y)
+}
+
+export{loadImages, drawPlane, drawHealth, drawScore, drawOptions, drawKeyMarkers, drawBullets}
+export{ bullet_elipse }
