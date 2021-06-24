@@ -1,3 +1,4 @@
+import { plane } from "./global"
 
 class Kakashi {
   constructor(x, y) {
@@ -30,9 +31,15 @@ KakashiBullet.prototype.set = function (x, y, speed){
 
 KakashiBullet.prototype.move = function(){ //かかしの玉
   this.y += this.speed
-  if(this.y > 500){
+  if(this.y > 530){
     this.alive = false
+  }else if(this.y > 470 && plane.posx-25 < this.x && this.x < plane.posx+25){
+    console.log("hit to plane")
+    this.alive = false
+    plane.health -= 1
+    console.log(plane.health)
   }
 }
+
 
 export { Kakashi, KakashiBullet }

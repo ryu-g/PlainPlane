@@ -31,7 +31,7 @@ canvas.addEventListener('mousemove', (e) => {
   else if (960 < mousepos.x) { plane.posx = 960} 
   else { plane.posx = mousepos.x} 
   plane.posy = viewHeight-90
-  // console.log(`${mousepos.x}, ${mousepos.y}`)
+  console.log(`${plane.posx}, ${plane.posy}`)
 })
 
 for(let i = 0; i < BULLETS_MAX_COUNT; i++){
@@ -54,7 +54,10 @@ canvas.addEventListener("mousedown", (e) => {
 canvas.addEventListener("mouseup", (e) => {
   for(let i = 0; i < kakashi_bullets.length; i++){
     if(!kakashi_bullets[i].alive ){
-      kakashi_bullets[i].set(kakashi.posx+20, kakashi.posy, 2)
+      kakashi_bullets[i].set(kakashi.posx, kakashi.posy, 2)
+      kakashi_bullets[i+200].set(kakashi.posx+20, kakashi.posy, 2)
+      kakashi_bullets[i+400].set(kakashi.posx-40, kakashi.posy, 2)
+      kakashi_bullets[i+600].set(kakashi.posx+35, kakashi.posy, 2)
       break
     }
   }
