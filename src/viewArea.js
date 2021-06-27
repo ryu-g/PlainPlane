@@ -1,10 +1,11 @@
 import {
   viewWidth,viewHeight, view,
-  bullets,kakashi_bullets} from './global.js'
+  plane, kakashi,
+  bullets,kakashi_bullets } from './global.js'
 import { shootBullets, kakashiShootBullets} from './functions_logics'
 import { loadImages, drawPlane,drawKakashiHealth,drawPlayerHealth, drawScore, drawOptions, drawKeyMarkers, drawKakashi } from './functions_img.js'
 import { rect } from './functions_canvas.js'
-import { plane, kakashi} from './global.js'
+// import { plane, kakashi} from './global.js'
 console.log("imported:viewArea.js")
 const leftSide = 40
 

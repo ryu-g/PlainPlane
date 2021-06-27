@@ -11,7 +11,8 @@ import option_powerup2 from './assets/option_powerup2@2x.png'
 import option_powerup3 from './assets/option_powerup3@2x.png'
 import option_heal from './assets/option_heal@2x.png'
 import health_label from './assets/health_label@2x.png'
-import health_dot from './assets/health_dot@2x.png'
+import health_dot_alive from './assets/health_dot_on@2x.png'
+import health_dot_dead from './assets/health_dot_off@2x.png'
 import parts_plane from './assets/parts_plane.png'
 import bullet_1 from './assets/bullet_1.png'
 import bullet_2 from './assets/bullet_2.png'
@@ -30,7 +31,8 @@ const upgradebulled_b = new Image()
 const upgradebulled_c = new Image()
 const heal = new Image()
 const healthLabel = new Image()
-const healthgauge = new Image()
+const healthgauge_alive = new Image()
+const healthgauge_dead = new Image()
 const plane_img = new Image()
 const bullet_elipse = new Image()
 const bullet_triangle = new Image()
@@ -57,7 +59,8 @@ function loadImages(){
   upgradebulled_b.src = option_powerup2
   upgradebulled_c.src = option_powerup3 
   healthLabel.src = health_label 
-  healthgauge.src = health_dot 
+  healthgauge_alive.src = health_dot_alive 
+  healthgauge_dead.src = health_dot_dead
   plane_img.src = parts_plane
   bullet_elipse.src = bullet_1
   bullet_triangle.src = bullet_2
@@ -127,7 +130,7 @@ healthLabel.addEventListener("load",function(){
   loaded_healthItem_message[0] = true
   }
 )
-healthgauge.addEventListener("load",function(){
+healthgauge_alive.addEventListener("load",function(){
   console.log("- loaded: health_dot.png")
   loaded_healthItem_message[1] = true
   }
@@ -208,8 +211,8 @@ function drawKakashiHealth(Health_posx, Health_posy, view){
   }
   if(itemAllLoaded){
     const health = kakashi.health
-    const gauge_dot_w = healthgauge.width / 2
-    const gauge_dot_h = healthgauge.height / 2
+    const gauge_dot_w = healthgauge_alive.width / 2
+    const gauge_dot_h = healthgauge_alive.height / 2
     const gauge_dot_gap = 2
     const label_w = healthLabel.width / 2
     const label_h = healthLabel.height / 2
@@ -217,7 +220,7 @@ function drawKakashiHealth(Health_posx, Health_posy, view){
     for(let i = 0 ; i < health; i++){
       view.drawImage
         (
-          healthgauge,
+          healthgauge_alive,
           Health_posx + label_w + gauge_dot_gap + (gauge_dot_w + gauge_dot_gap) * i,
           Health_posy,
           gauge_dot_w,gauge_dot_h
@@ -236,8 +239,8 @@ function drawPlayerHealth(Health_posx, Health_posy, view){
   }
   if(itemAllLoaded){
     const health = plane.health
-    const gauge_dot_w = healthgauge.width / 2
-    const gauge_dot_h = healthgauge.height / 2
+    const gauge_dot_w = healthgauge_alive.width / 2
+    const gauge_dot_h = healthgauge_alive.height / 2
     const gauge_dot_gap = 2
     const label_w = healthLabel.width / 2
     const label_h = healthLabel.height / 2
@@ -245,7 +248,7 @@ function drawPlayerHealth(Health_posx, Health_posy, view){
     for(let i = 0 ; i < health; i++){
       view.drawImage
         (
-          healthgauge,
+          healthgauge_alive,
           Health_posx + label_w + gauge_dot_gap + (gauge_dot_w + gauge_dot_gap) * i,
           Health_posy,
           gauge_dot_w,gauge_dot_h
