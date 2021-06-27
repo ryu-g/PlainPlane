@@ -33,7 +33,8 @@ Bullet.prototype.move = function(){
   this.y -= this.speed
   if(this.y < 60){
     this.alive = false
-  }else if(this.y < 134 && kakashi.posx < this.x && this.x < kakashi.posx+50) {
+  }
+  else if(this.y < 134 && kakashi.posx < this.x && this.x < kakashi.posx+50) {
     // console.log("hit!")
     this.alive = false
     kakashi.health -= 1

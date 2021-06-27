@@ -257,8 +257,6 @@ function drawPlayerHealth(Health_posx, Health_posy, view){
   }
 }
 
-
-
 function drawScore(score, score_posx, score_posy, view){
   let s = 0
   s += score
@@ -290,9 +288,23 @@ function drawOptions(Options_posx, Options_posy, view){
   }
 }
 
-function drawBullets(x, y, view){
-  view.drawImage(bullet_star, x, y)
+function drawBullets(view, bullets){
+  for(let i = 0; i < bullets.length; i++){
+    if(bullets[i].alive){
+      view.drawImage(bullet_star, bullets[i].x, bullets[i].y)
+    }
+  }
 }
 
-export{loadImages, drawPlane, drawKakashiHealth, drawPlayerHealth, drawScore, drawOptions, drawKeyMarkers, drawBullets, drawKakashi}
+export{
+  loadImages,
+  drawPlane,
+  drawKakashiHealth,
+  drawPlayerHealth,
+  drawScore,
+  drawOptions,
+  drawKeyMarkers,
+  drawBullets,
+  drawKakashi
+}
 export{ bullet_elipse }

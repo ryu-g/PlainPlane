@@ -1,20 +1,12 @@
-import { drawBullets } from './functions_img'
-
-function shootBullets(bullets, view){
+function moveAllBullets(bullets){
   for(let i = 0; i < bullets.length; i++){
-    if(bullets[i].alive){
-      bullets[i].move()
-      drawBullets(bullets[i].x, bullets[i].y, view)
-    }
+    if(bullets[i].alive){ bullets[i].move() }
   }
 }
 
-function kakashiShootBullets(kakashi_bullets, view){
+function kakashi_moveAllBullets(kakashi_bullets){
   for(let i = 0; i < kakashi_bullets.length; i++){
-    if(kakashi_bullets[i].alive){
-      kakashi_bullets[i].move()
-      drawBullets(kakashi_bullets[i].x, kakashi_bullets[i].y, view)
-    }
+    if(kakashi_bullets[i].alive){ kakashi_bullets[i].move() }
   }
 }
 
@@ -22,4 +14,4 @@ function getRandomInt(min, max) {
   return Math.floor(min + Math.random() * ( max - min ) ) 
 }
 
-export {shootBullets,  getRandomInt, kakashiShootBullets}
+export {getRandomInt, moveAllBullets , kakashi_moveAllBullets}
