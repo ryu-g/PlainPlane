@@ -14,4 +14,9 @@ function getRandomInt(min, max) {
   return Math.floor(min + Math.random() * ( max - min ) ) 
 }
 
-export {getRandomInt, moveAllBullets , kakashi_moveAllBullets}
+function zeroPadding(score){
+  let result = ('00000000000000000000'+ score).slice(-23)
+  return result
+}
+
+export {getRandomInt, moveAllBullets , kakashi_moveAllBullets, zeroPadding}

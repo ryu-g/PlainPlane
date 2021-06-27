@@ -4,13 +4,14 @@ import {
   kakashi, kakashi_bullets, bullets_a, bullets_b, bullets_c } from './global.js'
 import { drawPlane,drawKakashiHealth,drawPlayerHealth, drawScore, drawOptions, drawKeyMarkers, drawKakashi, drawBullets } from './functions_img.js'
 import { rect } from './functions_canvas.js'
+import { zeroPadding } from './functions_logics.js'
 console.log("imported:viewArea.js")
 const leftSide = 40
 
 function draw(){
   view.clearRect(0,0,viewWidth,viewHeight) 
   rect( viewWidth/2, 50, viewWidth/2 - 40, viewHeight-100, view)
-  drawScore(3420000000009, leftSide, 50, view)
+  drawScore(zeroPadding(plane.score), leftSide, 50, view)
   drawKeyMarkers(leftSide, 60, view)
   drawOptions(leftSide, 90, view)
   drawPlayerHealth(viewWidth/2, viewHeight-34, view )
