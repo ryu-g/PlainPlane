@@ -1,10 +1,10 @@
 import { plane } from "./global"
 
 class Kakashi {
-  constructor(x, y) {
+  constructor(x, y, health) {
     this.posx = x
     this.posy = y
-    this.health = 90
+    this.health = health
     this.score = 0
     console.log(`kakashi_x : ${this.posx}`)
     console.log(`kakashi_y : ${this.posy}`)

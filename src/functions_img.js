@@ -213,7 +213,7 @@ function drawKakashiHealth(Health_posx, Health_posy, view){
     const health = kakashi.health
     const gauge_dot_w = healthgauge_alive.width / 2
     const gauge_dot_h = healthgauge_alive.height / 2
-    const gauge_dot_gap = 2
+    const gauge_dot_gap = 0.5
     const label_w = healthLabel.width / 2
     const label_h = healthLabel.height / 2
     view.drawImage(healthLabel, Health_posx, Health_posy, label_w, label_h)
@@ -241,7 +241,7 @@ function drawPlayerHealth(Health_posx, Health_posy, view){
     const health = plane.health
     const gauge_dot_w = healthgauge_alive.width / 2
     const gauge_dot_h = healthgauge_alive.height / 2
-    const gauge_dot_gap = 2
+    const gauge_dot_gap = 0.5
     const label_w = healthLabel.width / 2
     const label_h = healthLabel.height / 2
     view.drawImage(healthLabel, Health_posx, Health_posy, label_w, label_h)

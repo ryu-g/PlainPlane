@@ -38,8 +38,7 @@ Bullet.prototype.move = function(){
     plane.score += 2
     this.alive = false
     kakashi.health -= 1
-    console.log(kakashi.health)
-    kakashi.posx = getRandomInt(kakashi.posx-100,kakashi.posx+100)
+    kakashi.posx = getRandomInt(542,945)
   }
 }
 
