@@ -1,14 +1,18 @@
 import { kakashi } from './global.js'
 import { getRandomInt } from './functions_logics.js'
 class Plane {
-  constructor(x, y) {
+  constructor(x, y, health) {
     this.posx = x
     this.posy = y
-    this.health = 90
+    this.health = health
+    this.maxhp = health
     this.score = 0
     console.log(`x : ${this.posx}`)
     console.log(`y : ${this.posy}`)
   }
+}
+Plane.prototype.damage = function( mount ){
+  this.health -= mount
 }
 
 function Bullet(){
@@ -29,7 +33,8 @@ Bullet.prototype.move = function(){
   this.y -= this.speed
   if(this.y < 60){
     this.alive = false
-  }else if(this.y < 134 && kakashi.posx < this.x && this.x < kakashi.posx+50) {
+  }
+  else if(this.y < 134 && kakashi.posx < this.x && this.x < kakashi.posx+50) {
     // console.log("hit!")
     this.alive = false
     kakashi.health -= 1
