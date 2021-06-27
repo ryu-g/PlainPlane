@@ -1,7 +1,7 @@
 import { Plane, Bullet } from './Plane.js'
 import { Kakashi, KakashiBullet } from './kakashi.js'
 import { getRandomInt } from './functions_logics.js'
-import { drawKakashi } from './interfaceView'
+import { drawKakashi } from './functions_img'
 const canvas = document.getElementById('view')
 const view = canvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1;

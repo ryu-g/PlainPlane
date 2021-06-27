@@ -1,4 +1,4 @@
-import { drawBullets } from './interfaceView'
+import { drawBullets } from './functions_img'
 
 function shootBullets(bullets, view){
   for(let i = 0; i < bullets.length; i++){
