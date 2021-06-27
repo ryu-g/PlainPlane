@@ -35,7 +35,7 @@ Bullet.prototype.move = function(){
     this.alive = false
   }
   else if(this.y < 134 && kakashi.posx < this.x && this.x < kakashi.posx+50) {
-    plane.score += 2
+    plane.score += 91
     this.alive = false
     kakashi.health -= 1
     kakashi.posx = getRandomInt(542,945)

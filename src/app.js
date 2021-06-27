@@ -1,6 +1,7 @@
 import './assets/*.png'
 import './main.sass'
 import './global.js'
+import './functions_logics'
 import { loadImages } from './functions_img'
 import { proc } from './mainproc'
 import { draw } from './viewArea'
