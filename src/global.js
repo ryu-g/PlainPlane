@@ -45,6 +45,8 @@ canvas.addEventListener("mousedown", (e) => {
     for(let i = 0; i < bullets.length; i++){
       if(!bullets[i].alive ){ // bullet[0] = alive  bullet[1] = fase
         bullets[i].set(plane.posx, plane.posy, 2)
+        bullets[i + 200].set(plane.posx-20, plane.posy, 2)
+        bullets[i + 400].set(plane.posx+20, plane.posy, 2)
         break
       }
     }

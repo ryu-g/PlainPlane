@@ -10,17 +10,18 @@ const leftSide = 40
 
 function draw(){
   view.clearRect(0,0,viewWidth,viewHeight) 
+  rect( viewWidth/2, 50, viewWidth/2 - 40, viewHeight-100, view)
   drawScore(3420000000009, leftSide, 50, view)
   drawKeyMarkers(leftSide, 60, view)
   drawOptions(leftSide, 90, view)
-  rect( viewWidth/2, 50, viewWidth/2 - 40, viewHeight-100, view)
-  drawPlane(plane.posx, viewHeight-90, view)
   drawPlayerHealth(viewWidth/2, viewHeight-34, view )
   drawKakashiHealth(viewWidth/2, 17, view)
+  drawPlane(plane.posx, viewHeight-90, view)
+  
+  drawKakashi(kakashi.posx, kakashi.posy, view)
   shootBullets(bullets, view)
   kakashiShootBullets(kakashi_bullets, view)
-  drawKakashi(kakashi.posx, kakashi.posy, view)
-
+  
   window.requestAnimationFrame(draw)
 }
 
