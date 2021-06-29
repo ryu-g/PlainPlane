@@ -5,6 +5,7 @@ class Kakashi {
     this.posx = x
     this.posy = y
     this.health = health
+    this.maxhp = health
     this.score = 0
     console.log(`kakashi_x : ${this.posx}`)
     console.log(`kakashi_y : ${this.posy}`)

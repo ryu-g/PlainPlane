@@ -4,12 +4,19 @@ import button_w from './assets/button_w@2x.png'
 import button_e from './assets/button_e@2x.png'
 import button_r from './assets/button_r@2x.png'
 import option_twinbarrel from './assets/option_twinbarrel@2x.png'
+import option_twinbarrel_nonActive from './assets/option_twinbarrel_nonActive@2x.png'
 import option_tripletbarrel from './assets/option_tripletbarrel@2x.png'
+import option_tripletbarrel_nonActive from './assets/option_tripletbarrel_nonActive@2x.png'
 import option_rapidfire from './assets/option_rapidfire@2x.png'
+import option_rapidfire_nonActive from './assets/option_rapidfire_nonActive@2x.png'
 import option_powerup1 from './assets/option_powerup1@2x.png'
+import option_powerup1_nonActive from './assets/option_powerup1_nonActive@2x.png'
 import option_powerup2 from './assets/option_powerup2@2x.png'
+import option_powerup2_nonActive from './assets/option_powerup2_nonActive@2x.png'
 import option_powerup3 from './assets/option_powerup3@2x.png'
+import option_powerup3_nonActive from './assets/option_powerup3_nonActive@2x.png'
 import option_heal from './assets/option_heal@2x.png'
+import option_heal_nonActive from './assets/option_heal_nonActive@2x.png'
 import health_label from './assets/health_label@2x.png'
 import health_dot_alive from './assets/health_dot_on@2x.png'
 import health_dot_dead from './assets/health_dot_off@2x.png'
@@ -23,6 +30,7 @@ const marker_q = new Image()
 const marker_w = new Image()
 const marker_e = new Image()
 const marker_r = new Image()
+
 const twinbarrel = new Image()
 const tripletbarrel = new Image()
 const rapidfire = new Image()
@@ -30,6 +38,15 @@ const upgradebulled_a = new Image()
 const upgradebulled_b = new Image()
 const upgradebulled_c = new Image()
 const heal = new Image()
+
+const twinbarrel_hide = new Image()
+const tripletbarrel_hide = new Image()
+const rapidfire_hide = new Image()
+const upgradebulled_a_hide = new Image()
+const upgradebulled_b_hide = new Image()
+const upgradebulled_c_hide = new Image()
+const heal_hide = new Image()
+
 const healthLabel = new Image()
 const healthgauge_alive = new Image()
 const healthgauge_dead = new Image()
@@ -57,7 +74,16 @@ function loadImages(){
   heal.src = option_heal 
   upgradebulled_a.src = option_powerup1 
   upgradebulled_b.src = option_powerup2
-  upgradebulled_c.src = option_powerup3 
+  upgradebulled_c.src = option_powerup3
+
+  twinbarrel_hide.src = option_twinbarrel_nonActive
+  tripletbarrel_hide.src = option_tripletbarrel_nonActive
+  rapidfire_hide.src = option_rapidfire_nonActive
+  heal_hide.src = option_heal_nonActive
+  upgradebulled_a_hide.src = option_powerup1_nonActive
+  upgradebulled_b_hide.src = option_powerup2_nonActive
+  upgradebulled_c_hide.src = option_powerup3_nonActive
+
   healthLabel.src = health_label 
   healthgauge_alive.src = health_dot_alive 
   healthgauge_dead.src = health_dot_dead
@@ -217,10 +243,12 @@ function drawKakashiHealth(Health_posx, Health_posy, view){
     const label_w = healthLabel.width / 2
     const label_h = healthLabel.height / 2
     view.drawImage(healthLabel, Health_posx, Health_posy, label_w, label_h)
-    for(let i = 0 ; i < health; i++){
+    let item
+    for(let i = 0 ; i < kakashi.maxhp; i++){
+      if(i < health){ item = healthgauge_alive } else { item = healthgauge_dead }
       view.drawImage
         (
-          healthgauge_alive,
+          item,
           Health_posx + label_w + gauge_dot_gap + (gauge_dot_w + gauge_dot_gap) * i,
           Health_posy,
           gauge_dot_w,gauge_dot_h
@@ -244,11 +272,13 @@ function drawPlayerHealth(Health_posx, Health_posy, view){
     const gauge_dot_gap = 0.5
     const label_w = healthLabel.width / 2
     const label_h = healthLabel.height / 2
+    let item
     view.drawImage(healthLabel, Health_posx, Health_posy, label_w, label_h)
-    for(let i = 0 ; i < health; i++){
+    for(let i = 0 ; i < plane.maxhp; i++){
+      if(i <= health){ item = healthgauge_alive } else { item = healthgauge_dead }
       view.drawImage
         (
-          healthgauge_alive,
+          item,
           Health_posx + label_w + gauge_dot_gap + (gauge_dot_w + gauge_dot_gap) * i,
           Health_posy,
           gauge_dot_w,gauge_dot_h
@@ -276,15 +306,26 @@ function drawOptions(Options_posx, Options_posy, view){
   if(itemAllLoaded){
     const gap = 10
     const size = twinbarrel.width / 2
-    view.drawImage(twinbarrel, Options_posx, Options_posy,  size, size)
-    view.drawImage(tripletbarrel, Options_posx, Options_posy + size + gap ,  size, size)
-    view.drawImage(rapidfire, Options_posx + size + gap, Options_posy,  size, size)
-    view.drawImage(upgradebulled_a, Options_posx + (size + gap) * 2 , Options_posy,  size, size)
-    view.drawImage(upgradebulled_b, Options_posx + (size + gap) * 2 , Options_posy + (size + gap) * 1,  size, size)
-    view.drawImage(upgradebulled_c, Options_posx + (size + gap) * 2 , Options_posy + (size + gap) * 2,  size, size)
-    view.drawImage(heal, Options_posx + (size + gap) * 3 , Options_posy,  size, size)
-    view.drawImage(heal, Options_posx + (size + gap) * 3 , Options_posy + (size + gap) * 1,  size, size)
-    view.drawImage(heal, Options_posx + (size + gap) * 3 , Options_posy + (size + gap) * 2,  size, size)
+    let _twinbarrel, _tripletbarrel, _rapidfire, _upgradebulled_a, _upgradebulled_b, _upgradebulled_c, _heal_a,  _heal_b,  _heal_c
+    if( plane.score > 1000 ){ _twinbarrel = twinbarrel } else { _twinbarrel = twinbarrel_hide }
+    if( plane.score > 10000 ){ _tripletbarrel = tripletbarrel } else { _tripletbarrel = tripletbarrel_hide }
+    if( plane.score > 3000 ){ _rapidfire = rapidfire } else { _rapidfire = rapidfire_hide }
+    if( plane.score > 5000 ){ _upgradebulled_a = upgradebulled_a } else { _upgradebulled_a = upgradebulled_a_hide }
+    if( plane.score > 20000 ){ _upgradebulled_b = upgradebulled_b } else { _upgradebulled_b = upgradebulled_b_hide }
+    if( plane.score > 100000 ){ _upgradebulled_c = upgradebulled_b } else { _upgradebulled_c = upgradebulled_b_hide }
+    if( plane.score > 5000 ){ _heal_a = heal } else { _heal_a = heal_hide }
+    if( plane.score > 15000 ){ _heal_b = heal } else { _heal_b = heal_hide }
+    if( plane.score > 30000 ){ _heal_c = heal } else { _heal_c = heal_hide }
+
+    view.drawImage(_twinbarrel, Options_posx, Options_posy,  size, size)
+    view.drawImage(_tripletbarrel, Options_posx, Options_posy + size + gap ,  size, size)
+    view.drawImage(_rapidfire, Options_posx + size + gap, Options_posy,  size, size)
+    view.drawImage(_upgradebulled_a, Options_posx + (size + gap) * 2 , Options_posy,  size, size)
+    view.drawImage(_upgradebulled_b, Options_posx + (size + gap) * 2 , Options_posy + (size + gap) * 1,  size, size)
+    view.drawImage(_upgradebulled_c, Options_posx + (size + gap) * 2 , Options_posy + (size + gap) * 2,  size, size)
+    view.drawImage(_heal_a, Options_posx + (size + gap) * 3 , Options_posy,  size, size)
+    view.drawImage(_heal_b, Options_posx + (size + gap) * 3 , Options_posy + (size + gap) * 1,  size, size)
+    view.drawImage(_heal_c, Options_posx + (size + gap) * 3 , Options_posy + (size + gap) * 2,  size, size)
   }
 }
 
