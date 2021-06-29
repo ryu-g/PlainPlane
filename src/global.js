@@ -72,6 +72,27 @@ canvas.addEventListener("mouseup", (e) => {
   }
 })
 
+window.addEventListener("keydown", (e) => {
+  if(e.key == 'q'){console.log(e.key)}
+  if(e.key == 'w'){console.log(e.key)}
+  if(e.key == 'e'){console.log(e.key)}
+  if(e.key == 'r'){console.log(e.key)}
+  if(e.key == 'f')
+    shoot()
+})
+
+function shoot() {
+  for(let i = 0; i < BULLETS_MAX_COUNT; i++){
+    if(!bullets_a[i].alive ){ 
+      bullets_a[i].set(plane.posx-5, plane.posy, 1)
+      bullets_b[i].set(plane.posx-35, plane.posy, 3)
+      bullets_c[i].set(plane.posx+25, plane.posy, 3)
+      bullets_b[i+2000].set(plane.posx-135, plane.posy, 2)
+      bullets_c[i+2000].set(plane.posx+125, plane.posy, 2)
+      break
+    }
+  }
+}
 export { viewWidth, viewHeight, view, BULLETS_MAX_COUNT, bullets_a,bullets_b,bullets_c, kakashi_bullets }
 export { plane }
 export { canvas }
