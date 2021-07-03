@@ -51,17 +51,17 @@ for(let i = 0; i < BULLETS_MAX_COUNT; i++){
 }
 
 canvas.addEventListener("mousedown", (e) => {
-    for(let i = 0; i < BULLETS_MAX_COUNT; i++){
-      if(!bullets_a[i].alive ){ 
-        bullets_a[i].set(plane.posx-5, plane.posy, 1)
-        bullets_b[i].set(plane.posx-35, plane.posy, 3)
-        bullets_c[i].set(plane.posx+25, plane.posy, 3)
-        bullets_b[i+2000].set(plane.posx-135, plane.posy, 2)
-        bullets_c[i+2000].set(plane.posx+125, plane.posy, 2)
-        break
-      }
+  for(let i = 0; i < BULLETS_MAX_COUNT; i++){
+    if(!bullets_a[i].alive ){ 
+      bullets_a[i].set(plane.posx-5, plane.posy, 1)
+      bullets_b[i].set(plane.posx-35, plane.posy, 3)
+      bullets_c[i].set(plane.posx+25, plane.posy, 3)
+      bullets_b[i+2000].set(plane.posx-135, plane.posy, 2)
+      bullets_c[i+2000].set(plane.posx+125, plane.posy, 2)
+      break
     }
-  })
+  }
+})
 
 canvas.addEventListener("mouseup", (e) => {
   for(let i = 0; i < BULLETS_MAX_COUNT; i++){
