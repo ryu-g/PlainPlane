@@ -2,7 +2,7 @@ import {
   viewWidth,viewHeight,view,
   plane,
   kakashi, kakashi_bullets, bullets_a, bullets_b, bullets_c } from './global.js'
-import { drawPlane,drawKakashiHealth,drawPlayerHealth, drawScore, drawOptions, drawKeyMarkers, drawKakashi, drawBullets } from './functions_img.js'
+import { drawPlane,drawKakashiHealth,drawPlayerHealth, drawScore, drawHeaderOfKeys, drawHeaderOfOptions, drawOptions, drawKeyMarkers, drawKakashi, drawBullets } from './functions_img.js'
 import { rect } from './functions_canvas.js'
 import { zeroPadding } from './functions_logics.js'
 console.log("imported:viewArea.js")
@@ -12,8 +12,10 @@ function draw(){
   view.clearRect(0,0,viewWidth,viewHeight) 
   rect( viewWidth/2, 50, viewWidth/2 - 40, viewHeight-100, view)
   drawScore(zeroPadding(plane.score), leftSide, 50, view)
-  drawKeyMarkers(leftSide, 60, view)
-  drawOptions(leftSide, 90, view)
+  drawHeaderOfKeys(leftSide, 70, view)
+  drawKeyMarkers(leftSide, 90, view)
+  drawHeaderOfOptions(leftSide, 130, view)
+  drawOptions(leftSide, 150, view)
   drawPlayerHealth(viewWidth/2, viewHeight-34, view )
   drawKakashiHealth(viewWidth/2, 17, view)
   drawPlane(plane.posx, viewHeight-90, view)

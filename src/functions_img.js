@@ -1,8 +1,19 @@
 import { kakashi, plane } from './global.js'
+import header_upgrade_key_path from './assets/header_upgrade_keys@2x.png'
+import header_options_path from './assets/header_options@2x.png'
 import button_q from './assets/button_q@2x.png'
 import button_w from './assets/button_w@2x.png'
 import button_e from './assets/button_e@2x.png'
 import button_r from './assets/button_r@2x.png'
+import button_q_n from './assets/button_q_nonactive@2x.png'
+import button_w_n from './assets/button_w_nonactive@2x.png'
+import button_e_n from './assets/button_e_nonactive@2x.png'
+import button_r_n from './assets/button_r_nonactive@2x.png'
+
+import arrow_active_path from './assets/option_arrow_active@2x.png'
+import arrow_nonactive_path from './assets/option_arrow_nonactive@2x.png'
+import option_defaultshot from './assets/option_defaultshot@2x.png'
+import option_defaultbullet from './assets/option_defaultbullet@2x.png'
 import option_twinbarrel from './assets/option_twinbarrel@2x.png'
 import option_twinbarrel_nonActive from './assets/option_twinbarrel_nonActive@2x.png'
 import option_tripletbarrel from './assets/option_tripletbarrel@2x.png'
@@ -26,11 +37,22 @@ import bullet_2 from './assets/bullet_2.png'
 import bullet_3 from './assets/bullet_3.png'
 import bullet_4 from './assets/bullet_4@2x.png'
 import kakashi_path from './assets/kakashi@2x.png'
+
+const header_upgrade_key = new Image()
+const header_options = new Image()
 const marker_q = new Image()
 const marker_w = new Image()
 const marker_e = new Image()
 const marker_r = new Image()
+const marker_q_nonActive = new Image()
+const marker_w_nonActive = new Image()
+const marker_e_nonActive = new Image()
+const marker_r_nonActive = new Image()
 
+const defaultshot = new Image()
+const defaultbullet = new Image()
+const arrow_active = new Image()
+const arrow_nonactive = new Image()
 const twinbarrel = new Image()
 const tripletbarrel = new Image()
 const rapidfire = new Image()
@@ -64,10 +86,21 @@ const loaded_plane_message = [false]
 const loaded_bullet_message = [false,false,false,false]
 
 function loadImages(){
+  header_upgrade_key.src = header_upgrade_key_path
+  header_options.src = header_options_path
   marker_q.src = button_q
   marker_w.src = button_w
   marker_e.src = button_e
   marker_r.src = button_r
+  marker_q_nonActive.src = button_q_n
+  marker_w_nonActive.src = button_w_n
+  marker_e_nonActive.src = button_e_n
+  marker_r_nonActive.src = button_r_n
+
+  defaultshot.src = option_defaultshot
+  defaultbullet.src = option_defaultbullet
+  arrow_active.src = arrow_active_path
+  arrow_nonactive.src = arrow_nonactive_path
   twinbarrel.src = option_twinbarrel 
   tripletbarrel.src = option_tripletbarrel
   rapidfire.src = option_rapidfire 
@@ -208,6 +241,18 @@ function drawKakashi(kakashi_x, kakashi_y, view){
   view.drawImage(kakashi_img, kakashi_x, kakashi_y)
 }
 
+function drawHeaderOfKeys(header_x, header_y, view){
+  const w = header_upgrade_key.width / 2
+  const h = header_upgrade_key.height / 2 
+  view.drawImage(header_upgrade_key, header_x, header_y, w, h)
+}
+
+function drawHeaderOfOptions(header_x, header_y, view){
+  const w = header_options.width / 2
+  const h = header_options.height / 2
+  view.drawImage(header_options, header_x, header_y, w, h)
+}
+
 function drawKeyMarkers(marker_x, marker_y, view){
   let itemAllLoaded = true
   for(let judge of loaded_buttons_message){
@@ -220,10 +265,10 @@ function drawKeyMarkers(marker_x, marker_y, view){
     const w = marker_q.width / 2
     const h = marker_q.height / 2
     const gap = 10
-    view.drawImage(marker_q,marker_x + (w + gap) * 0, marker_y,w,h)
-    view.drawImage(marker_w,marker_x + (w + gap) * 1, marker_y,w,h)
-    view.drawImage(marker_e,marker_x + (w + gap) * 2, marker_y,w,h)
-    view.drawImage(marker_r,marker_x + (w + gap) * 3, marker_y,w,h)
+    view.drawImage(marker_q_nonActive,marker_x + (w + gap) * 0, marker_y,w,h)
+    view.drawImage(marker_w_nonActive,marker_x + (w + gap) * 1, marker_y,w,h)
+    view.drawImage(marker_e_nonActive,marker_x + (w + gap) * 2, marker_y,w,h)
+    view.drawImage(marker_r_nonActive,marker_x + (w + gap) * 3, marker_y,w,h)
   }
 }
 
@@ -304,8 +349,9 @@ function drawOptions(Options_posx, Options_posy, view){
     }
   }
   if(itemAllLoaded){
-    const gap = 10
-    const size = twinbarrel.width / 2
+    const gap_x = 10
+    const gap_y = 30
+    const optionSize = twinbarrel.width / 2
     let _twinbarrel, _tripletbarrel, _rapidfire, _upgradebulled_a, _upgradebulled_b, _upgradebulled_c, _heal_a,  _heal_b,  _heal_c
     if( plane.score > 1000 ){ _twinbarrel = twinbarrel } else { _twinbarrel = twinbarrel_hide }
     if( plane.score > 10000 ){ _tripletbarrel = tripletbarrel } else { _tripletbarrel = tripletbarrel_hide }
@@ -317,15 +363,37 @@ function drawOptions(Options_posx, Options_posy, view){
     if( plane.score > 15000 ){ _heal_b = heal } else { _heal_b = heal_hide }
     if( plane.score > 30000 ){ _heal_c = heal } else { _heal_c = heal_hide }
 
-    view.drawImage(_twinbarrel, Options_posx, Options_posy,  size, size)
-    view.drawImage(_tripletbarrel, Options_posx, Options_posy + size + gap ,  size, size)
-    view.drawImage(_rapidfire, Options_posx + size + gap, Options_posy,  size, size)
-    view.drawImage(_upgradebulled_a, Options_posx + (size + gap) * 2 , Options_posy,  size, size)
-    view.drawImage(_upgradebulled_b, Options_posx + (size + gap) * 2 , Options_posy + (size + gap) * 1,  size, size)
-    view.drawImage(_upgradebulled_c, Options_posx + (size + gap) * 2 , Options_posy + (size + gap) * 2,  size, size)
-    view.drawImage(_heal_a, Options_posx + (size + gap) * 3 , Options_posy,  size, size)
-    view.drawImage(_heal_b, Options_posx + (size + gap) * 3 , Options_posy + (size + gap) * 1,  size, size)
-    view.drawImage(_heal_c, Options_posx + (size + gap) * 3 , Options_posy + (size + gap) * 2,  size, size)
+    view.drawImage(defaultshot, Options_posx, Options_posy + (optionSize + gap_y) * 0, optionSize, optionSize)
+    view.drawImage(_twinbarrel, Options_posx, Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
+    view.drawImage(_tripletbarrel, Options_posx, Options_posy + (optionSize + gap_y) * 2 ,  optionSize, optionSize)
+    drawArrows(Options_posx + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
+    drawArrows(Options_posx + optionSize/3, Options_posy + (optionSize + gap_y*2/3) * 2, false, view)
+
+    view.drawImage(defaultshot, Options_posx + optionSize + gap_x, Options_posy + (optionSize + gap_y) * 0, optionSize, optionSize)
+    view.drawImage(_rapidfire, Options_posx + optionSize + gap_x, Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
+    drawArrows(Options_posx + optionSize + gap_x + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
+
+    view.drawImage(defaultbullet, Options_posx + (optionSize + gap_x) * 2, Options_posy + (optionSize + gap_y) * 0, optionSize, optionSize)
+    view.drawImage(_upgradebulled_a, Options_posx + (optionSize + gap_x) * 2 , Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
+    view.drawImage(_upgradebulled_b, Options_posx + (optionSize + gap_x) * 2 , Options_posy + (optionSize + gap_y) * 2,  optionSize, optionSize)
+    view.drawImage(_upgradebulled_c, Options_posx + (optionSize + gap_x) * 2 , Options_posy + (optionSize + gap_y) * 3,  optionSize, optionSize)
+    drawArrows(Options_posx + (optionSize + gap_x) * 2 + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
+    drawArrows(Options_posx + (optionSize + gap_x) * 2 + optionSize/3, Options_posy + (optionSize + gap_y*2/3) * 2, false, view)
+    drawArrows(Options_posx + (optionSize + gap_x) * 2 + optionSize/3, Options_posy + (optionSize + gap_y*7/9) * 3, false, view)
+
+    view.drawImage(_heal_a, Options_posx + (optionSize + gap_x) * 3 , Options_posy,  optionSize, optionSize)
+    view.drawImage(_heal_b, Options_posx + (optionSize + gap_x) * 3 , Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
+    view.drawImage(_heal_c, Options_posx + (optionSize + gap_x) * 3 , Options_posy + (optionSize + gap_y) * 2,  optionSize, optionSize)
+    drawArrows(Options_posx + (optionSize + gap_x) * 3 + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
+    drawArrows(Options_posx + (optionSize + gap_x) * 3 + optionSize/3, Options_posy + (optionSize + gap_y*2/3) * 2, false, view)
+  }
+}
+
+function drawArrows(x,y,isActive,view){
+  if(isActive){
+    view.drawImage(arrow_active, x, y)
+  }else{
+    view.drawImage(arrow_nonactive, x, y)
   }
 }
 
@@ -343,6 +411,8 @@ export{
   drawKakashiHealth,
   drawPlayerHealth,
   drawScore,
+  drawHeaderOfKeys,
+  drawHeaderOfOptions,
   drawOptions,
   drawKeyMarkers,
   drawBullets,
