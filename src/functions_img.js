@@ -1,8 +1,19 @@
 import { kakashi, plane } from './global.js'
+import header_upgrade_key_path from './assets/header_upgrade_keys@2x.png'
+import header_options_path from './assets/header_options@2x.png'
 import button_q from './assets/button_q@2x.png'
 import button_w from './assets/button_w@2x.png'
 import button_e from './assets/button_e@2x.png'
 import button_r from './assets/button_r@2x.png'
+import button_q_n from './assets/button_q_nonactive@2x.png'
+import button_w_n from './assets/button_w_nonactive@2x.png'
+import button_e_n from './assets/button_e_nonactive@2x.png'
+import button_r_n from './assets/button_r_nonactive@2x.png'
+
+import arrow_active_path from './assets/option_arrow_active@2x.png'
+import arrow_nonactive_path from './assets/option_arrow_nonactive@2x.png'
+import option_defaultshot from './assets/option_defaultshot@2x.png'
+import option_defaultbullet from './assets/option_defaultbullet@2x.png'
 import option_twinbarrel from './assets/option_twinbarrel@2x.png'
 import option_twinbarrel_nonActive from './assets/option_twinbarrel_nonActive@2x.png'
 import option_tripletbarrel from './assets/option_tripletbarrel@2x.png'
@@ -28,11 +39,21 @@ import bullet_4 from './assets/bullet_4@2x.png'
 import kakashi_path from './assets/kakashi@2x.png'
 
 const image_sources= {
+  header_upgrade_key: header_upgrade_key_path,
+  header_options: header_options_path,
   marker_q: button_q,
   marker_w: button_w,
   marker_e: button_e,
   marker_r: button_r,
+  marker_q_nonActive: button_q_n,
+  marker_w_nonActive: button_w_n,
+  marker_e_nonActive: button_e_n,
+  marker_r_nonActive: button_r_n,
 
+  defaultshot: option_defaultshot,
+  defaultbullet: option_defaultbullet,
+  arrow_active: arrow_active_path,
+  arrow_nonactive: arrow_nonactive_path,
   twinbarrel: option_twinbarrel,
   tripletbarrel: option_tripletbarrel,
   rapidfire: option_rapidfire,
@@ -88,14 +109,26 @@ function drawKakashi(kakashi_x, kakashi_y, view){
   view.drawImage(images.kakashi_img, kakashi_x, kakashi_y)
 }
 
+function drawHeaderOfKeys(header_x, header_y, view){
+  const w = images.header_upgrade_key.width / 2
+  const h = images.header_upgrade_key.height / 2 
+  view.drawImage(images.header_upgrade_key, header_x, header_y, w, h)
+}
+
+function drawHeaderOfOptions(header_x, header_y, view){
+  const w = images.header_options.width / 2
+  const h = images.header_options.height / 2
+  view.drawImage(images.header_options, header_x, header_y, w, h)
+}
+
 function drawKeyMarkers(marker_x, marker_y, view){
   const w = images.marker_q.width / 2
   const h = images.marker_q.height / 2
   const gap = 10
-  view.drawImage(images.marker_q,marker_x + (w + gap) * 0, marker_y,w,h)
-  view.drawImage(images.marker_w,marker_x + (w + gap) * 1, marker_y,w,h)
-  view.drawImage(images.marker_e,marker_x + (w + gap) * 2, marker_y,w,h)
-  view.drawImage(images.marker_r,marker_x + (w + gap) * 3, marker_y,w,h)
+  view.drawImage(images.marker_q_nonActive,marker_x + (w + gap) * 0, marker_y,w,h)
+  view.drawImage(images.marker_w_nonActive,marker_x + (w + gap) * 1, marker_y,w,h)
+  view.drawImage(images.marker_e_nonActive,marker_x + (w + gap) * 2, marker_y,w,h)
+  view.drawImage(images.marker_r_nonActive,marker_x + (w + gap) * 3, marker_y,w,h)
 }
 
 function drawKakashiHealth(Health_posx, Health_posy, view){
@@ -149,8 +182,10 @@ function drawScore(score, score_posx, score_posy, view){
 }
 
 function drawOptions(Options_posx, Options_posy, view){
-  const gap = 10
+  const gap_x = 10
+  const gap_y = 30
   const size = images.twinbarrel.width / 2
+  const optionSize = images.twinbarrel.width / 2
   let _twinbarrel, _tripletbarrel, _rapidfire, _upgradebulled_a, _upgradebulled_b, _upgradebulled_c, _heal_a,  _heal_b,  _heal_c
   if( plane.score > 1000 ){ _twinbarrel = images.twinbarrel } else { _twinbarrel = images.twinbarrel_hide }
   if( plane.score > 10000 ){ _tripletbarrel = images.tripletbarrel } else { _tripletbarrel = images.tripletbarrel_hide }
@@ -162,15 +197,37 @@ function drawOptions(Options_posx, Options_posy, view){
   if( plane.score > 15000 ){ _heal_b = images.heal } else { _heal_b = images.heal_hide }
   if( plane.score > 30000 ){ _heal_c = images.heal } else { _heal_c = images.heal_hide }
 
-  view.drawImage(_twinbarrel, Options_posx, Options_posy,  size, size)
-  view.drawImage(_tripletbarrel, Options_posx, Options_posy + size + gap ,  size, size)
-  view.drawImage(_rapidfire, Options_posx + size + gap, Options_posy,  size, size)
-  view.drawImage(_upgradebulled_a, Options_posx + (size + gap) * 2 , Options_posy,  size, size)
-  view.drawImage(_upgradebulled_b, Options_posx + (size + gap) * 2 , Options_posy + (size + gap) * 1,  size, size)
-  view.drawImage(_upgradebulled_c, Options_posx + (size + gap) * 2 , Options_posy + (size + gap) * 2,  size, size)
-  view.drawImage(_heal_a, Options_posx + (size + gap) * 3 , Options_posy,  size, size)
-  view.drawImage(_heal_b, Options_posx + (size + gap) * 3 , Options_posy + (size + gap) * 1,  size, size)
-  view.drawImage(_heal_c, Options_posx + (size + gap) * 3 , Options_posy + (size + gap) * 2,  size, size)
+  view.drawImage(images.defaultshot, Options_posx, Options_posy + (optionSize + gap_y) * 0, optionSize, optionSize)
+  view.drawImage(_twinbarrel, Options_posx, Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
+  view.drawImage(_tripletbarrel, Options_posx, Options_posy + (optionSize + gap_y) * 2 ,  optionSize, optionSize)
+  drawArrows(Options_posx + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
+  drawArrows(Options_posx + optionSize/3, Options_posy + (optionSize + gap_y*2/3) * 2, false, view)
+
+  view.drawImage(images.defaultshot, Options_posx + optionSize + gap_x, Options_posy + (optionSize + gap_y) * 0, optionSize, optionSize)
+  view.drawImage(_rapidfire, Options_posx + optionSize + gap_x, Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
+  drawArrows(Options_posx + optionSize + gap_x + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
+
+  view.drawImage(images.defaultbullet, Options_posx + (optionSize + gap_x) * 2, Options_posy + (optionSize + gap_y) * 0, optionSize, optionSize)
+  view.drawImage(_upgradebulled_a, Options_posx + (optionSize + gap_x) * 2 , Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
+  view.drawImage(_upgradebulled_b, Options_posx + (optionSize + gap_x) * 2 , Options_posy + (optionSize + gap_y) * 2,  optionSize, optionSize)
+  view.drawImage(_upgradebulled_c, Options_posx + (optionSize + gap_x) * 2 , Options_posy + (optionSize + gap_y) * 3,  optionSize, optionSize)
+  drawArrows(Options_posx + (optionSize + gap_x) * 2 + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
+  drawArrows(Options_posx + (optionSize + gap_x) * 2 + optionSize/3, Options_posy + (optionSize + gap_y*2/3) * 2, false, view)
+  drawArrows(Options_posx + (optionSize + gap_x) * 2 + optionSize/3, Options_posy + (optionSize + gap_y*7/9) * 3, false, view)
+
+  view.drawImage(_heal_a, Options_posx + (optionSize + gap_x) * 3 , Options_posy,  optionSize, optionSize)
+  view.drawImage(_heal_b, Options_posx + (optionSize + gap_x) * 3 , Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
+  view.drawImage(_heal_c, Options_posx + (optionSize + gap_x) * 3 , Options_posy + (optionSize + gap_y) * 2,  optionSize, optionSize)
+  drawArrows(Options_posx + (optionSize + gap_x) * 3 + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
+  drawArrows(Options_posx + (optionSize + gap_x) * 3 + optionSize/3, Options_posy + (optionSize + gap_y*2/3) * 2, false, view)
+}
+
+function drawArrows(x,y,isActive,view){
+  if(isActive){
+    view.drawImage(images.arrow_active, x, y)
+  }else{
+    view.drawImage(images.arrow_nonactive, x, y)
+  }
 }
 
 function drawBullets(view, bullets){
@@ -187,6 +244,8 @@ export{
   drawKakashiHealth,
   drawPlayerHealth,
   drawScore,
+  drawHeaderOfKeys,
+  drawHeaderOfOptions,
   drawOptions,
   drawKeyMarkers,
   drawBullets,
