@@ -392,6 +392,8 @@ export{
   drawKakashiHealth,
   drawPlayerHealth,
   drawScore,
+  drawHeaderOfKeys,
+  drawHeaderOfOptions,
   drawOptions,
   drawKeyMarkers,
   drawBullets,
