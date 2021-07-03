@@ -236,17 +236,15 @@ function drawKakashi(kakashi_x, kakashi_y, view){
 }
 
 function drawHeaderOfKeys(header_x, header_y, view){
-  if(false){
-    view.drawImage(header_upgrade_key, header_x, header_y)
-  }
-  console.log('[debug message] here is drawHeaderOfKeys')
+  const w = header_upgrade_key.width / 2
+  const h = header_upgrade_key.height / 2 
+  view.drawImage(header_upgrade_key, header_x, header_y, w, h)
 }
 
 function drawHeaderOfOptions(header_x, header_y, view){
-  if(false){
-    view.drawImage(header_options, header_x, header_y)
-  }
-  console.log('[debug message] here is drawHeaderOfOptions')
+  const w = header_options.width / 2
+  const h = header_options.height / 2
+  view.drawImage(header_options, header_x, header_y, w, h)
 }
 
 function drawKeyMarkers(marker_x, marker_y, view){
