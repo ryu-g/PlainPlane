@@ -1,8 +1,17 @@
 import { kakashi, plane } from './global.js'
+import header_upgrade_key_path from './assets/header_upgrade_keys@2x.png'
+import header_options_path from './assets/header_options@2x.png'
 import button_q from './assets/button_q@2x.png'
 import button_w from './assets/button_w@2x.png'
 import button_e from './assets/button_e@2x.png'
 import button_r from './assets/button_r@2x.png'
+import button_q_n from './assets/button_q_nonactive@2x.png'
+import button_w_n from './assets/button_w_nonactive@2x.png'
+import button_e_n from './assets/button_e_nonactive@2x.png'
+import button_r_n from './assets/button_r_nonactive@2x.png'
+
+import arrow_active_path from './assets/option_arrow_active@2x.png'
+import arrow_nonactive_path from './assets/option_arrow_nonactive@2x.png'
 import option_twinbarrel from './assets/option_twinbarrel@2x.png'
 import option_twinbarrel_nonActive from './assets/option_twinbarrel_nonActive@2x.png'
 import option_tripletbarrel from './assets/option_tripletbarrel@2x.png'
@@ -26,11 +35,20 @@ import bullet_2 from './assets/bullet_2.png'
 import bullet_3 from './assets/bullet_3.png'
 import bullet_4 from './assets/bullet_4@2x.png'
 import kakashi_path from './assets/kakashi@2x.png'
+
+const header_upgrade_key = new Image()
+const header_options = new Image()
 const marker_q = new Image()
 const marker_w = new Image()
 const marker_e = new Image()
 const marker_r = new Image()
+const marker_q_nonActive = new Image()
+const marker_w_nonActive = new Image()
+const marker_e_nonActive = new Image()
+const marker_r_nonActive = new Image()
 
+const arrow_active = new Image()
+const arrow_nonactive = new Image()
 const twinbarrel = new Image()
 const tripletbarrel = new Image()
 const rapidfire = new Image()
@@ -64,10 +82,19 @@ const loaded_plane_message = [false]
 const loaded_bullet_message = [false,false,false,false]
 
 function loadImages(){
+  header_upgrade_key.src = header_upgrade_key_path
+  header_options.src = header_options_path
   marker_q.src = button_q
   marker_w.src = button_w
   marker_e.src = button_e
   marker_r.src = button_r
+  marker_q_nonActive.src = button_q_n
+  marker_w_nonActive.src = button_w_n
+  marker_e_nonActive.src = button_e_n
+  marker_r_nonActive.src = button_r_n
+
+  arrow_active.src = arrow_active_path
+  arrow_nonactive.src = arrow_nonactive_path
   twinbarrel.src = option_twinbarrel 
   tripletbarrel.src = option_tripletbarrel
   rapidfire.src = option_rapidfire 
@@ -208,6 +235,20 @@ function drawKakashi(kakashi_x, kakashi_y, view){
   view.drawImage(kakashi_img, kakashi_x, kakashi_y)
 }
 
+function drawHeaderOfKeys(header_x, header_y, view){
+  if(false){
+    view.drawImage(header_upgrade_key, header_x, header_y)
+  }
+  console.log('[debug message] here is drawHeaderOfKeys')
+}
+
+function drawHeaderOfOptions(header_x, header_y, view){
+  if(false){
+    view.drawImage(header_options, header_x, header_y)
+  }
+  console.log('[debug message] here is drawHeaderOfOptions')
+}
+
 function drawKeyMarkers(marker_x, marker_y, view){
   let itemAllLoaded = true
   for(let judge of loaded_buttons_message){
@@ -326,6 +367,14 @@ function drawOptions(Options_posx, Options_posy, view){
     view.drawImage(_heal_a, Options_posx + (size + gap) * 3 , Options_posy,  size, size)
     view.drawImage(_heal_b, Options_posx + (size + gap) * 3 , Options_posy + (size + gap) * 1,  size, size)
     view.drawImage(_heal_c, Options_posx + (size + gap) * 3 , Options_posy + (size + gap) * 2,  size, size)
+  }
+}
+
+function drawArrows(x,y,isActive,view){
+  if(isActive){
+    view.drawImage(arrow_active, x, y)
+  }else{
+    view.drawImage(arrow_nonactive, x, y)
   }
 }
 
