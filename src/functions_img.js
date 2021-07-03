@@ -26,264 +26,117 @@ import bullet_2 from './assets/bullet_2.png'
 import bullet_3 from './assets/bullet_3.png'
 import bullet_4 from './assets/bullet_4@2x.png'
 import kakashi_path from './assets/kakashi@2x.png'
-const marker_q = new Image()
-const marker_w = new Image()
-const marker_e = new Image()
-const marker_r = new Image()
 
-const twinbarrel = new Image()
-const tripletbarrel = new Image()
-const rapidfire = new Image()
-const upgradebulled_a = new Image()
-const upgradebulled_b = new Image()
-const upgradebulled_c = new Image()
-const heal = new Image()
+const image_sources= {
+  marker_q: button_q,
+  marker_w: button_w,
+  marker_e: button_e,
+  marker_r: button_r,
 
-const twinbarrel_hide = new Image()
-const tripletbarrel_hide = new Image()
-const rapidfire_hide = new Image()
-const upgradebulled_a_hide = new Image()
-const upgradebulled_b_hide = new Image()
-const upgradebulled_c_hide = new Image()
-const heal_hide = new Image()
+  twinbarrel: option_twinbarrel,
+  tripletbarrel: option_tripletbarrel,
+  rapidfire: option_rapidfire,
+  heal: option_heal,
+  upgradebulled_a: option_powerup1,
+  upgradebulled_b: option_powerup2,
+  upgradebulled_c: option_powerup3,
 
-const healthLabel = new Image()
-const healthgauge_alive = new Image()
-const healthgauge_dead = new Image()
-const plane_img = new Image()
-const bullet_elipse = new Image()
-const bullet_triangle = new Image()
-const bullet_rect = new Image()
-const bullet_star = new Image()
-const kakashi_img = new Image()
+  twinbarrel_hide: option_twinbarrel_nonActive,
+  tripletbarrel_hide: option_tripletbarrel_nonActive,
+  rapidfire_hide: option_rapidfire_nonActive,
+  heal_hide: option_heal_nonActive,
+  upgradebulled_a_hide: option_powerup1_nonActive,
+  upgradebulled_b_hide: option_powerup2_nonActive,
+  upgradebulled_c_hide: option_powerup3_nonActive,
 
-const loaded_buttons_message = [false,false,false,false]
-const loaded_icon_message = [false,false,false,false,false,false,false]
-const loaded_healthItem_message = [false,false]
-const loaded_plane_message = [false]
-const loaded_bullet_message = [false,false,false,false]
+  healthLabel: health_label,
+  healthgauge_alive: health_dot_alive,
+  healthgauge_dead: health_dot_dead,
+  plane_img: parts_plane,
+  bullet_elipse: bullet_1,
+  bullet_triangle: bullet_2,
+  bullet_rect: bullet_3,
+  bullet_star: bullet_4,
+  kakashi_img: kakashi_path,
+}
+const images = {}
 
+// 全画像のロードを待つpromise
 function loadImages(){
-  marker_q.src = button_q
-  marker_w.src = button_w
-  marker_e.src = button_e
-  marker_r.src = button_r
-  twinbarrel.src = option_twinbarrel 
-  tripletbarrel.src = option_tripletbarrel
-  rapidfire.src = option_rapidfire 
-  heal.src = option_heal 
-  upgradebulled_a.src = option_powerup1 
-  upgradebulled_b.src = option_powerup2
-  upgradebulled_c.src = option_powerup3
-
-  twinbarrel_hide.src = option_twinbarrel_nonActive
-  tripletbarrel_hide.src = option_tripletbarrel_nonActive
-  rapidfire_hide.src = option_rapidfire_nonActive
-  heal_hide.src = option_heal_nonActive
-  upgradebulled_a_hide.src = option_powerup1_nonActive
-  upgradebulled_b_hide.src = option_powerup2_nonActive
-  upgradebulled_c_hide.src = option_powerup3_nonActive
-
-  healthLabel.src = health_label 
-  healthgauge_alive.src = health_dot_alive 
-  healthgauge_dead.src = health_dot_dead
-  plane_img.src = parts_plane
-  bullet_elipse.src = bullet_1
-  bullet_triangle.src = bullet_2
-  bullet_rect.src = bullet_3
-  bullet_star.src = bullet_4
-  kakashi_img.src = kakashi_path
-  console.log("loading images.....")
+  for (const [key, value] of Object.entries(image_sources)) {
+    images[key] = new Image()
+    images[key].src = value
+  }
+  const promise = Promise.all(
+    Object.values(images).map(img=>{
+      return new Promise((resolve, reject) => {
+        img.onload = () => resolve(img);
+        img.onerror = (e) => reject(e);
+      })
+    })
+  )
+  return promise
 }
 
-// ---- option interface loading message -----
-marker_q.addEventListener("load", function(){
-  console.log("- loaded: button_q.png")
-  loaded_buttons_message[0] = true
-})
-marker_w.addEventListener("load", function(){
-  console.log("- loaded: button_w.png")
-  loaded_buttons_message[1] = true
-})
-marker_e.addEventListener("load", function(){
-  console.log("- loaded: button_e.png")
-  loaded_buttons_message[2] = true
-})
-marker_r.addEventListener("load", function(){
-  console.log("- loaded: button_r.png")
-  loaded_buttons_message[3] = true
-})
-
-heal.addEventListener("load",function(){
-  console.log("- loaded: option_heal.png")
-  loaded_icon_message[3] = true
-  }
-)
-rapidfire.addEventListener("load",function(){
-  console.log("- loaded: option_rapidfire.png")
-  loaded_icon_message[1] = true
-  }
-)
-twinbarrel.addEventListener("load",function(){
-  console.log("- loaded: option_twinbarrel.png")
-  loaded_icon_message[0] = true
-  }
-)
-tripletbarrel.addEventListener("load",function(){
-  console.log("- loaded: option_tripletbarrel.png")
-  loaded_icon_message[4] = true
-  }
-)
-upgradebulled_a.addEventListener("load",function(){
-  console.log("- loaded: option_powerup1.png")
-  loaded_icon_message[2] = true
-  }
-)
-upgradebulled_a.addEventListener("load",function(){
-  console.log("- loaded: option_powerup1.png")
-  loaded_icon_message[5] = true
-  }
-)
-upgradebulled_a.addEventListener("load",function(){
-  console.log("- loaded: option_powerup1.png")
-  loaded_icon_message[6] = true
-  }
-)
-
-// ---- health item loading message ----
-healthLabel.addEventListener("load",function(){
-  console.log("- loaded: health_label.png")
-  loaded_healthItem_message[0] = true
-  }
-)
-healthgauge_alive.addEventListener("load",function(){
-  console.log("- loaded: health_dot.png")
-  loaded_healthItem_message[1] = true
-  }
-)
-plane_img.addEventListener("load",function(){
-  console.log("- loaded: parts_plane.png")
-  loaded_plane_message[0] = true
-  }
-)
-
-// ---- bullet loading message ----//
-bullet_elipse.addEventListener("load", function(){
-  console.log("- loaded: bullet_elipse")
-  loaded_bullet_message[0] = true
-  }
-)
-bullet_triangle.addEventListener("load", function(){
-  console.log("- loaded: bullet_triangle")
-  loaded_bullet_message[1] = true
-  }
-)
-bullet_rect.addEventListener("load", function(){
-  console.log("- loaded: bullet_rect")
-  loaded_bullet_message[2] = true
-  }
-)
-bullet_star.addEventListener("load", function(){
-  console.log("- loaded: bullet_star")
-  loaded_bullet_message[3] = true
-  }
-)
-
 function drawPlane(plane_posx, plane_posy, view){
-  let itemAllLoaded = true
-  for(let judge of loaded_plane_message){
-    if(!judge){
-      itemAllLoaded = false
-      break
-    }
-  }
-  if(itemAllLoaded){
-    const size = plane_img.width / 10
-    // view.drawImage( plane, x - size/2, plane_posy - size/2, size, size)
-    view.drawImage(plane_img, plane_posx - size/2, plane_posy - size/2, size, size)
-  }
+  const size = images.plane_img.width / 10
+  // view.drawImage( plane, x - size/2, plane_posy - size/2, size, size)
+  view.drawImage(images.plane_img, plane_posx - size/2, plane_posy - size/2, size, size)
 }
 
 function drawKakashi(kakashi_x, kakashi_y, view){
-  view.drawImage(kakashi_img, kakashi_x, kakashi_y)
+  view.drawImage(images.kakashi_img, kakashi_x, kakashi_y)
 }
 
 function drawKeyMarkers(marker_x, marker_y, view){
-  let itemAllLoaded = true
-  for(let judge of loaded_buttons_message){
-    if(!judge){
-      itemAllLoaded = false
-      break
-    }
-  }
-  if(itemAllLoaded){
-    const w = marker_q.width / 2
-    const h = marker_q.height / 2
-    const gap = 10
-    view.drawImage(marker_q,marker_x + (w + gap) * 0, marker_y,w,h)
-    view.drawImage(marker_w,marker_x + (w + gap) * 1, marker_y,w,h)
-    view.drawImage(marker_e,marker_x + (w + gap) * 2, marker_y,w,h)
-    view.drawImage(marker_r,marker_x + (w + gap) * 3, marker_y,w,h)
-  }
+  const w = images.marker_q.width / 2
+  const h = images.marker_q.height / 2
+  const gap = 10
+  view.drawImage(images.marker_q,marker_x + (w + gap) * 0, marker_y,w,h)
+  view.drawImage(images.marker_w,marker_x + (w + gap) * 1, marker_y,w,h)
+  view.drawImage(images.marker_e,marker_x + (w + gap) * 2, marker_y,w,h)
+  view.drawImage(images.marker_r,marker_x + (w + gap) * 3, marker_y,w,h)
 }
 
 function drawKakashiHealth(Health_posx, Health_posy, view){
-  let itemAllLoaded = true
-  for(let judge of loaded_healthItem_message){
-    if(!judge){
-      itemAllLoaded = false
-      break
-    }
-  }
-  if(itemAllLoaded){
-    const health = kakashi.health
-    const gauge_dot_w = healthgauge_alive.width / 2
-    const gauge_dot_h = healthgauge_alive.height / 2
-    const gauge_dot_gap = 0.5
-    const label_w = healthLabel.width / 2
-    const label_h = healthLabel.height / 2
-    view.drawImage(healthLabel, Health_posx, Health_posy, label_w, label_h)
-    let item
-    for(let i = 0 ; i < kakashi.maxhp; i++){
-      if(i < health){ item = healthgauge_alive } else { item = healthgauge_dead }
-      view.drawImage
-        (
-          item,
-          Health_posx + label_w + gauge_dot_gap + (gauge_dot_w + gauge_dot_gap) * i,
-          Health_posy,
-          gauge_dot_w,gauge_dot_h
-        )
-      }
+  const health = kakashi.health
+  const gauge_dot_w = images.healthgauge_alive.width / 2
+  const gauge_dot_h = images.healthgauge_alive.height / 2
+  const gauge_dot_gap = 0.5
+  const label_w = images.healthLabel.width / 2
+  const label_h = images.healthLabel.height / 2
+  view.drawImage(images.healthLabel, Health_posx, Health_posy, label_w, label_h)
+  let item
+  for(let i = 0 ; i < kakashi.maxhp; i++){
+    if(i < health){ item = images.healthgauge_alive } else { item = images.healthgauge_dead }
+    view.drawImage
+    (
+      item,
+      Health_posx + label_w + gauge_dot_gap + (gauge_dot_w + gauge_dot_gap) * i,
+      Health_posy,
+      gauge_dot_w,gauge_dot_h
+    )
   }
 }
 
 function drawPlayerHealth(Health_posx, Health_posy, view){
-  let itemAllLoaded = true
-  for(let judge of loaded_healthItem_message){
-    if(!judge){
-      itemAllLoaded = false
-      break
-    }
-  }
-  if(itemAllLoaded){
-    const health = plane.health
-    const gauge_dot_w = healthgauge_alive.width / 2
-    const gauge_dot_h = healthgauge_alive.height / 2
-    const gauge_dot_gap = 0.5
-    const label_w = healthLabel.width / 2
-    const label_h = healthLabel.height / 2
-    let item
-    view.drawImage(healthLabel, Health_posx, Health_posy, label_w, label_h)
-    for(let i = 0 ; i < plane.maxhp; i++){
-      if(i <= health){ item = healthgauge_alive } else { item = healthgauge_dead }
-      view.drawImage
-        (
-          item,
-          Health_posx + label_w + gauge_dot_gap + (gauge_dot_w + gauge_dot_gap) * i,
-          Health_posy,
-          gauge_dot_w,gauge_dot_h
-        )
-      }
+  const health = plane.health
+  const gauge_dot_w = images.healthgauge_alive.width / 2
+  const gauge_dot_h = images.healthgauge_alive.height / 2
+  const gauge_dot_gap = 0.5
+  const label_w = images.healthLabel.width / 2
+  const label_h = images.healthLabel.height / 2
+  let item
+  view.drawImage(images.healthLabel, Health_posx, Health_posy, label_w, label_h)
+  for(let i = 0 ; i < plane.maxhp; i++){
+    if(i <= health){ item = images.healthgauge_alive } else { item = images.healthgauge_dead }
+    view.drawImage
+    (
+      item,
+      Health_posx + label_w + gauge_dot_gap + (gauge_dot_w + gauge_dot_gap) * i,
+      Health_posy,
+      gauge_dot_w,gauge_dot_h
+    )
   }
 }
 
@@ -296,43 +149,34 @@ function drawScore(score, score_posx, score_posy, view){
 }
 
 function drawOptions(Options_posx, Options_posy, view){
-  let itemAllLoaded = true
-  for(let judge of loaded_icon_message){
-    if(!judge){
-      itemAllLoaded = false
-      break
-    }
-  }
-  if(itemAllLoaded){
-    const gap = 10
-    const size = twinbarrel.width / 2
-    let _twinbarrel, _tripletbarrel, _rapidfire, _upgradebulled_a, _upgradebulled_b, _upgradebulled_c, _heal_a,  _heal_b,  _heal_c
-    if( plane.score > 1000 ){ _twinbarrel = twinbarrel } else { _twinbarrel = twinbarrel_hide }
-    if( plane.score > 10000 ){ _tripletbarrel = tripletbarrel } else { _tripletbarrel = tripletbarrel_hide }
-    if( plane.score > 3000 ){ _rapidfire = rapidfire } else { _rapidfire = rapidfire_hide }
-    if( plane.score > 5000 ){ _upgradebulled_a = upgradebulled_a } else { _upgradebulled_a = upgradebulled_a_hide }
-    if( plane.score > 20000 ){ _upgradebulled_b = upgradebulled_b } else { _upgradebulled_b = upgradebulled_b_hide }
-    if( plane.score > 100000 ){ _upgradebulled_c = upgradebulled_b } else { _upgradebulled_c = upgradebulled_b_hide }
-    if( plane.score > 5000 ){ _heal_a = heal } else { _heal_a = heal_hide }
-    if( plane.score > 15000 ){ _heal_b = heal } else { _heal_b = heal_hide }
-    if( plane.score > 30000 ){ _heal_c = heal } else { _heal_c = heal_hide }
+  const gap = 10
+  const size = images.twinbarrel.width / 2
+  let _twinbarrel, _tripletbarrel, _rapidfire, _upgradebulled_a, _upgradebulled_b, _upgradebulled_c, _heal_a,  _heal_b,  _heal_c
+  if( plane.score > 1000 ){ _twinbarrel = images.twinbarrel } else { _twinbarrel = images.twinbarrel_hide }
+  if( plane.score > 10000 ){ _tripletbarrel = images.tripletbarrel } else { _tripletbarrel = images.tripletbarrel_hide }
+  if( plane.score > 3000 ){ _rapidfire = images.rapidfire } else { _rapidfire = images.rapidfire_hide }
+  if( plane.score > 5000 ){ _upgradebulled_a = images.upgradebulled_a } else { _upgradebulled_a = images.upgradebulled_a_hide }
+  if( plane.score > 20000 ){ _upgradebulled_b = images.upgradebulled_b } else { _upgradebulled_b = images.upgradebulled_b_hide }
+  if( plane.score > 100000 ){ _upgradebulled_c = images.upgradebulled_b } else { _upgradebulled_c = images.upgradebulled_b_hide }
+  if( plane.score > 5000 ){ _heal_a = images.heal } else { _heal_a = images.heal_hide }
+  if( plane.score > 15000 ){ _heal_b = images.heal } else { _heal_b = images.heal_hide }
+  if( plane.score > 30000 ){ _heal_c = images.heal } else { _heal_c = images.heal_hide }
 
-    view.drawImage(_twinbarrel, Options_posx, Options_posy,  size, size)
-    view.drawImage(_tripletbarrel, Options_posx, Options_posy + size + gap ,  size, size)
-    view.drawImage(_rapidfire, Options_posx + size + gap, Options_posy,  size, size)
-    view.drawImage(_upgradebulled_a, Options_posx + (size + gap) * 2 , Options_posy,  size, size)
-    view.drawImage(_upgradebulled_b, Options_posx + (size + gap) * 2 , Options_posy + (size + gap) * 1,  size, size)
-    view.drawImage(_upgradebulled_c, Options_posx + (size + gap) * 2 , Options_posy + (size + gap) * 2,  size, size)
-    view.drawImage(_heal_a, Options_posx + (size + gap) * 3 , Options_posy,  size, size)
-    view.drawImage(_heal_b, Options_posx + (size + gap) * 3 , Options_posy + (size + gap) * 1,  size, size)
-    view.drawImage(_heal_c, Options_posx + (size + gap) * 3 , Options_posy + (size + gap) * 2,  size, size)
-  }
+  view.drawImage(_twinbarrel, Options_posx, Options_posy,  size, size)
+  view.drawImage(_tripletbarrel, Options_posx, Options_posy + size + gap ,  size, size)
+  view.drawImage(_rapidfire, Options_posx + size + gap, Options_posy,  size, size)
+  view.drawImage(_upgradebulled_a, Options_posx + (size + gap) * 2 , Options_posy,  size, size)
+  view.drawImage(_upgradebulled_b, Options_posx + (size + gap) * 2 , Options_posy + (size + gap) * 1,  size, size)
+  view.drawImage(_upgradebulled_c, Options_posx + (size + gap) * 2 , Options_posy + (size + gap) * 2,  size, size)
+  view.drawImage(_heal_a, Options_posx + (size + gap) * 3 , Options_posy,  size, size)
+  view.drawImage(_heal_b, Options_posx + (size + gap) * 3 , Options_posy + (size + gap) * 1,  size, size)
+  view.drawImage(_heal_c, Options_posx + (size + gap) * 3 , Options_posy + (size + gap) * 2,  size, size)
 }
 
 function drawBullets(view, bullets){
   for(let i = 0; i < bullets.length; i++){
     if(bullets[i].alive){
-      view.drawImage(bullet_star, bullets[i].x, bullets[i].y)
+      view.drawImage(images.bullet_star, bullets[i].x, bullets[i].y)
     }
   }
 }
@@ -346,6 +190,6 @@ export{
   drawOptions,
   drawKeyMarkers,
   drawBullets,
-  drawKakashi
+  drawKakashi,
+  images,
 }
-export{ bullet_elipse }

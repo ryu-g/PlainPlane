@@ -1,8 +1,24 @@
 import {
-  viewWidth,viewHeight,view,
+  viewWidth,
+  viewHeight,
+  view,
   plane,
-  kakashi, kakashi_bullets, bullets_a, bullets_b, bullets_c } from './global.js'
-import { drawPlane,drawKakashiHealth,drawPlayerHealth, drawScore, drawOptions, drawKeyMarkers, drawKakashi, drawBullets } from './functions_img.js'
+  kakashi, 
+  kakashi_bullets, 
+  bullets_a,
+  bullets_b, 
+  bullets_c 
+} from './global.js'
+import {
+  drawPlane,
+  drawKakashiHealth,
+  drawPlayerHealth, 
+  drawScore, 
+  drawOptions, 
+  drawKeyMarkers, 
+  drawKakashi, 
+  drawBullets 
+} from './functions_img.js'
 import { rect } from './functions_canvas.js'
 import { zeroPadding } from './functions_logics.js'
 console.log("imported:viewArea.js")

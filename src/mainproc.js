@@ -1,5 +1,11 @@
-import { bullets_a,bullets_b,bullets_c, kakashi_bullets } from './global.js'
-import { moveAllBullets , kakashi_moveAllBullets} from './functions_logics'
+import {
+  bullets_a,bullets_b,bullets_c,
+  kakashi_bullets
+} from './global.js'
+import { 
+  moveAllBullets,
+  kakashi_moveAllBullets
+} from './functions_logics'
 
 const proc = () => {
   // console.log('this is mainProcess')
