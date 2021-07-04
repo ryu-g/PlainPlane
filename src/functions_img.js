@@ -248,45 +248,56 @@ function drawScore(score, score_posx, score_posy, view){
   }
 }
 
-function drawOptions(Options_posx, Options_posy, view){
-  const gap_x = 10
+function drawOptions_multishoot( Options_posx, Options_posy, view){
   const gap_y = 30
-  const size = images.twinbarrel.width / 2
   const optionSize = images.twinbarrel.width / 2
-  let _twinbarrel, _tripletbarrel, _rapidfire, _upgradebulled_a, _upgradebulled_b, _upgradebulled_c, _heal_a,  _heal_b,  _heal_c
+  let _twinbarrel, _tripletbarrel
   if( plane.score > 1000 ){ _twinbarrel = images.twinbarrel } else { _twinbarrel = images.twinbarrel_hide }
   if( plane.score > 10000 ){ _tripletbarrel = images.tripletbarrel } else { _tripletbarrel = images.tripletbarrel_hide }
-  if( plane.score > 3000 ){ _rapidfire = images.rapidfire } else { _rapidfire = images.rapidfire_hide }
-  if( plane.score > 5000 ){ _upgradebulled_a = images.upgradebulled_a } else { _upgradebulled_a = images.upgradebulled_a_hide }
-  if( plane.score > 20000 ){ _upgradebulled_b = images.upgradebulled_b } else { _upgradebulled_b = images.upgradebulled_b_hide }
-  if( plane.score > 100000 ){ _upgradebulled_c = images.upgradebulled_b } else { _upgradebulled_c = images.upgradebulled_b_hide }
-  if( plane.score > 5000 ){ _heal_a = images.heal } else { _heal_a = images.heal_hide }
-  if( plane.score > 15000 ){ _heal_b = images.heal } else { _heal_b = images.heal_hide }
-  if( plane.score > 30000 ){ _heal_c = images.heal } else { _heal_c = images.heal_hide }
-
   view.drawImage(images.defaultshot, Options_posx, Options_posy + (optionSize + gap_y) * 0, optionSize, optionSize)
   view.drawImage(_twinbarrel, Options_posx, Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
   view.drawImage(_tripletbarrel, Options_posx, Options_posy + (optionSize + gap_y) * 2 ,  optionSize, optionSize)
   drawArrows(Options_posx + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
   drawArrows(Options_posx + optionSize/3, Options_posy + (optionSize + gap_y*2/3) * 2, false, view)
-
-  view.drawImage(images.defaultshot, Options_posx + optionSize + gap_x, Options_posy + (optionSize + gap_y) * 0, optionSize, optionSize)
-  view.drawImage(_rapidfire, Options_posx + optionSize + gap_x, Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
-  drawArrows(Options_posx + optionSize + gap_x + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
-
-  view.drawImage(images.defaultbullet, Options_posx + (optionSize + gap_x) * 2, Options_posy + (optionSize + gap_y) * 0, optionSize, optionSize)
-  view.drawImage(_upgradebulled_a, Options_posx + (optionSize + gap_x) * 2 , Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
-  view.drawImage(_upgradebulled_b, Options_posx + (optionSize + gap_x) * 2 , Options_posy + (optionSize + gap_y) * 2,  optionSize, optionSize)
-  view.drawImage(_upgradebulled_c, Options_posx + (optionSize + gap_x) * 2 , Options_posy + (optionSize + gap_y) * 3,  optionSize, optionSize)
-  drawArrows(Options_posx + (optionSize + gap_x) * 2 + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
-  drawArrows(Options_posx + (optionSize + gap_x) * 2 + optionSize/3, Options_posy + (optionSize + gap_y*2/3) * 2, false, view)
-  drawArrows(Options_posx + (optionSize + gap_x) * 2 + optionSize/3, Options_posy + (optionSize + gap_y*7/9) * 3, false, view)
-
-  view.drawImage(_heal_a, Options_posx + (optionSize + gap_x) * 3 , Options_posy,  optionSize, optionSize)
-  view.drawImage(_heal_b, Options_posx + (optionSize + gap_x) * 3 , Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
-  view.drawImage(_heal_c, Options_posx + (optionSize + gap_x) * 3 , Options_posy + (optionSize + gap_y) * 2,  optionSize, optionSize)
-  drawArrows(Options_posx + (optionSize + gap_x) * 3 + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
-  drawArrows(Options_posx + (optionSize + gap_x) * 3 + optionSize/3, Options_posy + (optionSize + gap_y*2/3) * 2, false, view)
+}
+function drawOptions_rapidFire( Options_posx, Options_posy, view){
+  const gap_y = 30
+  const optionSize = images.twinbarrel.width / 2
+  let _rapidfire
+  if( plane.score > 3000 ){ _rapidfire = images.rapidfire } else { _rapidfire = images.rapidfire_hide }
+  view.drawImage(images.defaultshot, Options_posx, Options_posy + (optionSize + gap_y) * 0, optionSize, optionSize)
+  view.drawImage(_rapidfire, Options_posx, Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
+  drawArrows(Options_posx + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
+}
+function drawOptions_bullets( Options_posx, Options_posy, view){
+  const gap_y = 30
+  const optionSize = images.twinbarrel.width / 2
+  const arrowpos_x = Options_posx + optionSize/3
+  let _upgradebulled_a, _upgradebulled_b, _upgradebulled_c
+  if( plane.score > 5000 ){ _upgradebulled_a = images.upgradebulled_a } else { _upgradebulled_a = images.upgradebulled_a_hide }
+  if( plane.score > 20000 ){ _upgradebulled_b = images.upgradebulled_b } else { _upgradebulled_b = images.upgradebulled_b_hide }
+  if( plane.score > 100000 ){ _upgradebulled_c = images.upgradebulled_b } else { _upgradebulled_c = images.upgradebulled_b_hide }
+  view.drawImage(images.defaultbullet, Options_posx, Options_posy + (optionSize + gap_y) * 0, optionSize, optionSize)
+  view.drawImage(_upgradebulled_a, Options_posx , Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
+  view.drawImage(_upgradebulled_b, Options_posx , Options_posy + (optionSize + gap_y) * 2,  optionSize, optionSize)
+  view.drawImage(_upgradebulled_c, Options_posx , Options_posy + (optionSize + gap_y) * 3,  optionSize, optionSize)
+  drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y/3) * 1, false, view)
+  drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y*2/3) * 2, false, view)
+  drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y*7/9) * 3, false, view)
+}
+function drawOptions_heals( Options_posx, Options_posy, view){
+  const gap_y = 30
+  const optionSize = images.twinbarrel.width / 2
+  const arrowpos_x = Options_posx + optionSize/3
+  let _heal_a,  _heal_b,  _heal_c
+  if( plane.score > 5000 ){ _heal_a = images.heal } else { _heal_a = images.heal_hide }
+  if( plane.score > 15000 ){ _heal_b = images.heal } else { _heal_b = images.heal_hide }
+  if( plane.score > 30000 ){ _heal_c = images.heal } else { _heal_c = images.heal_hide }
+  view.drawImage(_heal_a, Options_posx , Options_posy,  optionSize, optionSize)
+  view.drawImage(_heal_b, Options_posx , Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
+  view.drawImage(_heal_c, Options_posx , Options_posy + (optionSize + gap_y) * 2,  optionSize, optionSize)
+  drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y/3) * 1, false, view)
+  drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y*2/3) * 2, false, view)
 }
 
 function drawArrows(x,y,isActive,view){
@@ -313,7 +324,10 @@ export{
   drawScore,
   drawHeaderOfKeys,
   drawHeaderOfOptions,
-  drawOptions,
+  drawOptions_multishoot,
+  drawOptions_rapidFire,
+  drawOptions_bullets,
+  drawOptions_heals,
   drawKeyMarkers,
   drawBullets,
   drawKakashi,

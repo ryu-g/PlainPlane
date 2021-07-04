@@ -16,7 +16,10 @@ import {
   drawScore, 
   drawHeaderOfKeys,
   drawHeaderOfOptions,
-  drawOptions, 
+  drawOptions_multishoot,
+  drawOptions_rapidFire,
+  drawOptions_bullets,
+  drawOptions_heals,
   drawKeyMarkers, 
   drawKakashi, 
   drawBullets 
@@ -33,7 +36,11 @@ function draw(){
   drawHeaderOfKeys(leftSide, 80, view)
   drawKeyMarkers(leftSide, 100, view)
   drawHeaderOfOptions(leftSide, 140, view)
-  drawOptions(leftSide, 160, view)
+  // drawOptions(leftSide, 160, view)
+  drawOptions_multishoot(leftSide, 160, view)
+  drawOptions_rapidFire(leftSide + 70, 160, view)
+  drawOptions_bullets(leftSide + 140, 160, view)
+  drawOptions_heals(leftSide + 210, 160, view)
   drawPlayerHealth(viewWidth/2, viewHeight-34, view )
   drawKakashiHealth(viewWidth/2, 17, view)
   drawPlane(plane.posx, viewHeight-90, view)
