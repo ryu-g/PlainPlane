@@ -251,7 +251,6 @@ function drawScore(score, score_posx, score_posy, view){
 function drawOptions(Options_posx, Options_posy, view){
   const gap_x = 10
   const gap_y = 30
-  const size = images.twinbarrel.width / 2
   const optionSize = images.twinbarrel.width / 2
   let _twinbarrel, _tripletbarrel, _rapidfire, _upgradebulled_a, _upgradebulled_b, _upgradebulled_c, _heal_a,  _heal_b,  _heal_c
   if( plane.score > 1000 ){ _twinbarrel = images.twinbarrel } else { _twinbarrel = images.twinbarrel_hide }
