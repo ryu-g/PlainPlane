@@ -2,7 +2,8 @@ import { kakashi, plane } from './global.js'
 import header_upgrade_key_path from './assets/header_upgrade_keys@2x.png'
 import header_options_path from './assets/header_options@2x.png'
 import label_score from './assets/label_score@2x.png'
-import num_0 from './assets/num_0@2x.png'
+import num_0_active from './assets/num_0_active@2x.png'
+import num_0_nonactive from './assets/num_0@2x.png'
 import num_1 from './assets/num_1@2x.png'
 import num_2 from './assets/num_2@2x.png'
 import num_3 from './assets/num_3@2x.png'
@@ -61,7 +62,8 @@ const image_sources= {
   marker_e_nonActive: button_e_n,
   marker_r_nonActive: button_r_n,
   label_score : label_score,
-  num_0 : num_0,
+  num_0_active : num_0_active,
+  num_0_nonactive : num_0_nonactive,
   num_1 : num_1,
   num_2 : num_2,
   num_3 : num_3,
@@ -196,8 +198,8 @@ function drawPlayerHealth(Health_posx, Health_posy, view){
 
 function drawScore(score, score_posx, score_posy, view){
   const s = score
-  const numw = images.num_0.width/2
-  const numh = images.num_0.height/2
+  const numw = images.num_0_active.width/2
+  const numh = images.num_0_active.height/2
   const label_w = images.label_score.width/2
   const label_h = images.label_score.height/2
 
@@ -208,8 +210,11 @@ function drawScore(score, score_posx, score_posy, view){
     let targetImage = ''
     posx_gap += 14
     switch(num){
+      case '_':
+        targetImage = images.num_0_nonactive
+        break
       case '0':
-        targetImage = images.num_0
+        targetImage = images.num_0_active
         break
       case '1':
         targetImage = images.num_1
