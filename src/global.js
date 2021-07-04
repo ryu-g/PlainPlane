@@ -27,9 +27,6 @@ const kakashi_bullets = new Array(BULLETS_MAX_COUNT)
 const RIGHT_LIMIT = 960
 const LEFT_LIMIT = 535
 
-
-console.log(`${plane.x}, ${plane.y}`)
-
 canvas.addEventListener('mousemove', (e) => {
   let rect = e.target.getBoundingClientRect()
   mousepos.x = Math.floor(e.clientX - rect.left)
@@ -73,10 +70,29 @@ canvas.addEventListener("mouseup", (e) => {
 })
 
 window.addEventListener("keydown", (e) => {
-  if(e.key == 'q'){console.log(e.key)}
-  if(e.key == 'w'){console.log(e.key)}
-  if(e.key == 'e'){console.log(e.key)}
-  if(e.key == 'r'){console.log(e.key)}
+  if(e.key == 'q'){
+    console.log(`[message] pressed ${e.key}`)
+    plane.upgradeWideShot()
+  }
+  if(e.key == 'w'){
+    console.log(`[message] pressed ${e.key}`)
+    plane.upgradeRapidFire()
+  }
+  if(e.key == 'e'){
+    console.log(`[message] pressed ${e.key}`)
+    plane.upgradeBullet()
+  }
+  if(e.key == 'r'){
+    console.log(`[message] pressed ${e.key}`)
+    plane.heal()
+  }
+  if(e.key == 's'){ // debug用
+    console.log(`[message] plane stats\n
+    wideshotLv : ${plane.stats.wideshotLv}\n
+    rapidFireLv :  ${plane.stats.rapidFireLv}\n
+    bulletLv : ${plane.stats.bulletLv}\n
+    healLv : ${plane.stats.healLv}`)
+  }
   if(e.key == 'f')
     shoot()
 })
