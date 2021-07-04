@@ -86,7 +86,7 @@ window.addEventListener("keydown", (e) => {
     console.log(`[message] pressed ${e.key}`)
     plane.heal()
   }
-  if(e.key == 's'){
+  if(e.key == 's'){ // debug用
     console.log(`[message] plane stats\n
     wideshotLv : ${plane.stats.wideshotLv}\n
     rapidFireLv :  ${plane.stats.rapidFireLv}\n
