@@ -274,10 +274,12 @@ function drawOptions_multishoot( Options_posx, Options_posy, view){
   
   let arrow1 = false
   let arrow2 = false
-  if( plane.score >= req_wideshot[1] ||  plane.stats.wideshotLv >= 2 ){
+  if( plane.score >= req_wideshot[1] && plane.stats.wideshotLv == 1
+    || plane.stats.wideshotLv >= 2 ){
     arrow1 = true 
   }
-  if( plane.score >= req_wideshot[2] ||  plane.stats.wideshotLv >= 3 ){
+  if( plane.score >= req_wideshot[2] && plane.stats.wideshotLv == 2
+    || plane.stats.wideshotLv >= 3 ){
     arrow2 = true 
   }
   drawArrows(Options_posx + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, arrow1, view)
@@ -293,7 +295,8 @@ function drawOptions_rapidFire( Options_posx, Options_posy, view){
   view.drawImage(_rapidfire, Options_posx, Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
 
   let arrow1 = false
-  if( plane.score >= req_rapidfire[1] ||  plane.stats.rapidFireLv >= 2 ){
+  if( plane.score >= req_rapidfire[1] && plane.stats.rapidFireLv == 1 
+    || plane.stats.rapidFireLv >=2 ){
     arrow1 = true 
   }
   drawArrows(Options_posx + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, arrow1, view)
@@ -315,13 +318,16 @@ function drawOptions_bullets( Options_posx, Options_posy, view){
   let arrow1 = false  
   let arrow2 = false
   let arrow3 = false
-  if( plane.score >= req_bullet[1] ||  plane.stats.bulletLv >= 2 ){
+  if( plane.score >= req_bullet[1] && plane.stats.bulletLv == 1 
+    || plane.stats.bulletLv >= 2){
     arrow1 = true 
   }
-  if( plane.score >= req_bullet[2] ||  plane.stats.bulletLv >= 3 ){
+  if( plane.score >= req_bullet[2] && plane.stats.bulletLv == 2 
+    || plane.stats.bulletLv >= 3){
     arrow2 = true 
   }
-  if( plane.score >= req_bullet[3] ||  plane.stats.bulletLv >= 4 ){
+  if( plane.score >= req_bullet[3] && plane.stats.bulletLv == 3 
+    || plane.stats.bulletLv >= 4){
     arrow3 = true 
   }
   drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y/3) * 1, arrow1, view)
@@ -344,13 +350,16 @@ function drawOptions_heals( Options_posx, Options_posy, view){
   let arrow1 = false  
   let arrow2 = false
   let arrow3 = false
-  if( plane.score >= req_heal[1] ||  plane.stats.healLv >= 2 ){
+  if( plane.score >= req_heal[1] && plane.stats.healLv == 1
+    || plane.stats.healLv >= 2){
     arrow1 = true 
   }
-  if( plane.score >= req_heal[2] ||  plane.stats.healLv >= 3 ){
+  if( plane.score >= req_heal[2] && plane.stats.healLv == 2
+    || plane.stats.healLv >= 3){
     arrow2 = true 
   }
-  if( plane.score >= req_heal[3] ||  plane.stats.healLv >= 4 ){
+  if( plane.score >= req_heal[3] && plane.stats.healLv == 3
+    || plane.stats.healLv >= 4){
     arrow3 = true 
   }
   drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y/3) * 1, arrow1, view)

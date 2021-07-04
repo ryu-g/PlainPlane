@@ -12,7 +12,8 @@ const req_bullet = {
 }
 const req_heal = {
   '1': 2000,
-  '2': 20000
+  '2': 6000,
+  '3': 9000,
 }
 
 export{
