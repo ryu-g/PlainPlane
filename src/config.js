@@ -7,7 +7,8 @@ const req_rapidfire = {
 }
 const req_bullet = {
   '1': 2000,
-  '2': 9000
+  '2': 9000,
+  '3': 10000
 }
 const req_heal = {
   '1': 2000,
