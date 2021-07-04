@@ -260,6 +260,7 @@ function drawOptions_multishoot( Options_posx, Options_posy, view){
   drawArrows(Options_posx + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
   drawArrows(Options_posx + optionSize/3, Options_posy + (optionSize + gap_y*2/3) * 2, false, view)
 }
+
 function drawOptions_rapidFire( Options_posx, Options_posy, view){
   const gap_y = 30
   const optionSize = images.twinbarrel.width / 2
@@ -269,6 +270,7 @@ function drawOptions_rapidFire( Options_posx, Options_posy, view){
   view.drawImage(_rapidfire, Options_posx, Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
   drawArrows(Options_posx + optionSize/3, Options_posy + (optionSize + gap_y/3) * 1, false, view)
 }
+
 function drawOptions_bullets( Options_posx, Options_posy, view){
   const gap_y = 30
   const optionSize = images.twinbarrel.width / 2
