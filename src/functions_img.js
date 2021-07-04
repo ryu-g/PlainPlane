@@ -154,15 +154,18 @@ function drawKeyMarkers(marker_x, marker_y, view){
   const w = images.marker_q.width / 2
   const h = images.marker_q.height / 2
   const gap = 10
-  let _q, _w, _e, _r = false
-  if( plane.score >= req_wideshot[plane.stats.wideshotLv]) _q = true
-  if( plane.score >= req_rapidfire[plane.stats.rapidFireLv]) _w = true
-  if( plane.score >= req_bullet[plane.stats.bulletLv]) _e = true
-  if( plane.score >= req_heal[plane.stats.healLv]) _r = true
-  view.drawImage(images.marker_q_nonActive,marker_x + (w + gap) * 0, marker_y,w,h)
-  view.drawImage(images.marker_w_nonActive,marker_x + (w + gap) * 1, marker_y,w,h)
-  view.drawImage(images.marker_e_nonActive,marker_x + (w + gap) * 2, marker_y,w,h)
-  view.drawImage(images.marker_r_nonActive,marker_x + (w + gap) * 3, marker_y,w,h)
+  let _q = images.marker_q_nonActive
+  let _w = images.marker_w_nonActive
+  let _e = images.marker_e_nonActive 
+  let _r = images.marker_r_nonActive
+  if( plane.score >= req_wideshot[plane.stats.wideshotLv]) _q = images.marker_q
+  if( plane.score >= req_rapidfire[plane.stats.rapidFireLv]) _w = images.marker_w
+  if( plane.score >= req_bullet[plane.stats.bulletLv]) _e = images.marker_e
+  if( plane.score >= req_heal[plane.stats.healLv]) _r = images.marker_r
+  view.drawImage(_q, marker_x + (w + gap) * 0, marker_y,w,h)
+  view.drawImage(_w, marker_x + (w + gap) * 1, marker_y,w,h)
+  view.drawImage(_e, marker_x + (w + gap) * 2, marker_y,w,h)
+  view.drawImage(_r, marker_x + (w + gap) * 3, marker_y,w,h)
 }
 
 function drawKakashiHealth(Health_posx, Health_posy, view){
