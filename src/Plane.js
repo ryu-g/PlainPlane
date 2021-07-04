@@ -7,13 +7,43 @@ class Plane {
     this.health = health
     this.maxhp = health
     this.score = 0
+    this.stats = {
+      wideshotLv : 1,
+      rapidFireLv : 1,
+      bulletLv : 1,
+      healLv : 1,
+    }
     console.log(`x : ${this.posx}`)
     console.log(`y : ${this.posy}`)
   }
 }
+
 Plane.prototype.damage = function( mount ){
   this.health -= mount
 }
+
+Plane.prototype.heal = function(){
+  const mount = 15 * this.stats.healLv
+  this.health += mount
+}
+
+Plane.prototype.upgradeWideShot = function(){
+  this.stats.wideshotLv+= 1
+}
+
+Plane.prototype.upgradeRapidFire = function(){
+  this.stats.rapidFireLv+= 1
+}
+
+Plane.prototype.upgradeBullet = function(){
+  this.stats.bulletLv+= 1
+}
+
+Plane.prototype.upgradeHeal = function(){
+  this.stats.healLv+= 1
+}
+
+
 
 function Bullet(){
   this.x = 0
