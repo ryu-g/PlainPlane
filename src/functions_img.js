@@ -1,6 +1,17 @@
 import { kakashi, plane } from './global.js'
 import header_upgrade_key_path from './assets/header_upgrade_keys@2x.png'
 import header_options_path from './assets/header_options@2x.png'
+import label_score from './assets/label_score@2x.png'
+import num_0 from './assets/num_0@2x.png'
+import num_1 from './assets/num_1@2x.png'
+import num_2 from './assets/num_2@2x.png'
+import num_3 from './assets/num_3@2x.png'
+import num_4 from './assets/num_4@2x.png'
+import num_5 from './assets/num_5@2x.png'
+import num_6 from './assets/num_6@2x.png'
+import num_7 from './assets/num_7@2x.png'
+import num_8 from './assets/num_8@2x.png'
+import num_9 from './assets/num_9@2x.png'
 import button_q from './assets/button_q@2x.png'
 import button_w from './assets/button_w@2x.png'
 import button_e from './assets/button_e@2x.png'
@@ -49,7 +60,17 @@ const image_sources= {
   marker_w_nonActive: button_w_n,
   marker_e_nonActive: button_e_n,
   marker_r_nonActive: button_r_n,
-
+  label_score : label_score,
+  num_0 : num_0,
+  num_1 : num_1,
+  num_2 : num_2,
+  num_3 : num_3,
+  num_4 : num_4,
+  num_5 : num_5,
+  num_6 : num_6,
+  num_7 : num_7,
+  num_8 : num_8,
+  num_9 : num_9,
   defaultshot: option_defaultshot,
   defaultbullet: option_defaultbullet,
   arrow_active: arrow_active_path,
