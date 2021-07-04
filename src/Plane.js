@@ -1,5 +1,12 @@
 import { plane, kakashi } from './global.js'
 import { getRandomInt } from './functions_logics.js'
+import {
+  req_wideshot,
+  req_rapidfire,
+  req_bullet,
+  req_heal
+} from './config.js'
+
 class Plane {
   constructor(x, y, health) {
     this.posx = x
@@ -23,27 +30,44 @@ Plane.prototype.damage = function( mount ){
 }
 
 Plane.prototype.heal = function(){
-  const mount = 15 * this.stats.healLv
-  if(this.stats.healLv < 4){
-    this.health += mount
-    this.upgradeHeal()
+  if(this.score > req_heal[this.stats.healLv]){
+    this.score -= req_heal[this.stats.healLv]
+    this.health += 15 * this.stats.healLv
+    this.stats.healLv += 1
+  }else{
+    console.log('need more score!')
+    console.log(`get more than ${req_heal[this.stats.healLv]} points!`)
   }
 }
 
 Plane.prototype.upgradeWideShot = function(){
-  this.stats.wideshotLv+= 1
+  if(this.score > req_wideshot[this.stats.wideshotLv]){
+    this.score -= req_wideshot[this.stats.wideshotLv]
+    this.stats.wideshotLv+= 1
+  }else{
+    console.log('need more score!')
+    console.log(`get more than ${req_wideshot[this.stats.wideshotLv]} points!`)
+  }
 }
 
 Plane.prototype.upgradeRapidFire = function(){
-  this.stats.rapidFireLv+= 1
+  if(this.score > req_rapidfire[this.stats.rapidFireLv]){
+    this.score -= req_rapidfire[this.stats.rapidFireLv]
+    this.stats.rapidFireLv+= 1
+  }else{
+    console.log('need more score!')
+    console.log(`get more than ${req_rapidfire[this.stats.rapidFireLv]} points!`)
+  }
 }
 
 Plane.prototype.upgradeBullet = function(){
-  this.stats.bulletLv+= 1
-}
-
-Plane.prototype.upgradeHeal = function(){
-  this.stats.healLv+= 1
+  if(this.score > req_bullet[this.stats.bulletLv]){
+    this.score -= req_bullet[this.stats.bulletLv]
+    this.stats.bulletLv+= 1
+  }else{
+    console.log('need more score!')
+    console.log(`get more than ${req_bullet[this.stats.bulletLv]} points!`)
+  }
 }
 
 
