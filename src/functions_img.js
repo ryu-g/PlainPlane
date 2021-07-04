@@ -176,9 +176,9 @@ function drawPlayerHealth(Health_posx, Health_posy, view){
 function drawScore(score, score_posx, score_posy, view){
   let s = 0
   s += score
-  view.font = "14px sans-serif";
+  view.font = "14px sans-serif"
   view.fillStyle = "#94FFA0"
-  view.fillText(`SCORE : ${s}`, score_posx, score_posy);
+  view.fillText(`SCORE : ${s}`, score_posx, score_posy)
 }
 
 function drawOptions(Options_posx, Options_posy, view){
