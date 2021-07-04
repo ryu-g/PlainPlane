@@ -324,11 +324,11 @@ function drawOptions_bullets( Options_posx, Options_posy, view){
   if( plane.score >= req_bullet[3] ||  plane.stats.bulletLv >= 4 ){
     arrow3 = true 
   }
-
   drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y/3) * 1, arrow1, view)
   drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y*2/3) * 2, arrow2, view)
   drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y*7/9) * 3, arrow3, view)
 }
+
 function drawOptions_heals( Options_posx, Options_posy, view){
   const gap_y = 30
   const optionSize = images.twinbarrel.width / 2
@@ -337,11 +337,25 @@ function drawOptions_heals( Options_posx, Options_posy, view){
   if( plane.stats.healLv >= 2  ){ _heal_a = images.heal } else { _heal_a = images.heal_hide }
   if( plane.stats.healLv >= 3  ){ _heal_b = images.heal } else { _heal_b = images.heal_hide }
   if( plane.stats.healLv >= 4  ){ _heal_c = images.heal } else { _heal_c = images.heal_hide }
-  view.drawImage(_heal_a, Options_posx , Options_posy,  optionSize, optionSize)
-  view.drawImage(_heal_b, Options_posx , Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
-  view.drawImage(_heal_c, Options_posx , Options_posy + (optionSize + gap_y) * 2,  optionSize, optionSize)
-  drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y/3) * 1, false, view)
-  drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y*2/3) * 2, false, view)
+  view.drawImage(_heal_a, Options_posx , Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
+  view.drawImage(_heal_b, Options_posx , Options_posy + (optionSize + gap_y) * 2,  optionSize, optionSize)
+  view.drawImage(_heal_c, Options_posx , Options_posy + (optionSize + gap_y) * 3,  optionSize, optionSize)
+
+  let arrow1 = false  
+  let arrow2 = false
+  let arrow3 = false
+  if( plane.score >= req_heal[1] ||  plane.stats.healLv >= 2 ){
+    arrow1 = true 
+  }
+  if( plane.score >= req_heal[2] ||  plane.stats.healLv >= 3 ){
+    arrow2 = true 
+  }
+  if( plane.score >= req_heal[3] ||  plane.stats.healLv >= 4 ){
+    arrow3 = true 
+  }
+  drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y/3) * 1, arrow1, view)
+  drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y*2/3) * 2, arrow2, view)
+  drawArrows(arrowpos_x, Options_posy + (optionSize + gap_y*7/9) * 3, arrow3, view)
 }
 
 function drawArrows(x,y,isActive,view){
