@@ -15,7 +15,7 @@ function getRandomInt(min, max) {
 }
 
 function zeroPadding(score){
-  let result = ('00000000000000000000'+score).slice(-21)
+  let result = ('______________'+score).slice(-14)
   return result
 }
 

@@ -1,6 +1,18 @@
 import { kakashi, plane } from './global.js'
 import header_upgrade_key_path from './assets/header_upgrade_keys@2x.png'
 import header_options_path from './assets/header_options@2x.png'
+import label_score from './assets/label_score@2x.png'
+import num_0_active from './assets/num_0_active@2x.png'
+import num_0_nonactive from './assets/num_0@2x.png'
+import num_1 from './assets/num_1@2x.png'
+import num_2 from './assets/num_2@2x.png'
+import num_3 from './assets/num_3@2x.png'
+import num_4 from './assets/num_4@2x.png'
+import num_5 from './assets/num_5@2x.png'
+import num_6 from './assets/num_6@2x.png'
+import num_7 from './assets/num_7@2x.png'
+import num_8 from './assets/num_8@2x.png'
+import num_9 from './assets/num_9@2x.png'
 import button_q from './assets/button_q@2x.png'
 import button_w from './assets/button_w@2x.png'
 import button_e from './assets/button_e@2x.png'
@@ -49,7 +61,18 @@ const image_sources= {
   marker_w_nonActive: button_w_n,
   marker_e_nonActive: button_e_n,
   marker_r_nonActive: button_r_n,
-
+  label_score : label_score,
+  num_0_active : num_0_active,
+  num_0_nonactive : num_0_nonactive,
+  num_1 : num_1,
+  num_2 : num_2,
+  num_3 : num_3,
+  num_4 : num_4,
+  num_5 : num_5,
+  num_6 : num_6,
+  num_7 : num_7,
+  num_8 : num_8,
+  num_9 : num_9,
   defaultshot: option_defaultshot,
   defaultbullet: option_defaultbullet,
   arrow_active: arrow_active_path,
@@ -174,11 +197,55 @@ function drawPlayerHealth(Health_posx, Health_posy, view){
 }
 
 function drawScore(score, score_posx, score_posy, view){
-  let s = 0
-  s += score
-  view.font = "14px sans-serif"
-  view.fillStyle = "#94FFA0"
-  view.fillText(`SCORE : ${s}`, score_posx, score_posy)
+  const s = score
+  const numw = images.num_0_active.width/2
+  const numh = images.num_0_active.height/2
+  const label_w = images.label_score.width/2
+  const label_h = images.label_score.height/2
+
+  const nums = s.split('')
+  let posx_gap = 55
+  view.drawImage(images.label_score, score_posx, score_posy, label_w, label_h)
+  for(let num of nums){
+    let targetImage = ''
+    posx_gap += 14
+    switch(num){
+      case '_':
+        targetImage = images.num_0_nonactive
+        break
+      case '0':
+        targetImage = images.num_0_active
+        break
+      case '1':
+        targetImage = images.num_1
+        break
+      case '2':
+        targetImage = images.num_2
+        break
+      case '3':
+        targetImage = images.num_3
+        break
+      case '4':
+        targetImage = images.num_4
+        break
+      case '5':
+        targetImage = images.num_5
+        break
+      case '6':
+        targetImage = images.num_6
+        break
+      case '7':
+        targetImage = images.num_7
+        break
+      case '8':
+        targetImage = images.num_8
+        break
+      case '9':
+        targetImage = images.num_9
+        break
+    }
+    view.drawImage(targetImage, score_posx + posx_gap, score_posy, numw, numh)
+  }
 }
 
 function drawOptions(Options_posx, Options_posy, view){
