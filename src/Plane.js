@@ -24,7 +24,10 @@ Plane.prototype.damage = function( mount ){
 
 Plane.prototype.heal = function(){
   const mount = 15 * this.stats.healLv
-  this.health += mount
+  if(this.stats.healLv < 4){
+    this.health += mount
+    this.upgradeHeal()
+  }
 }
 
 Plane.prototype.upgradeWideShot = function(){
