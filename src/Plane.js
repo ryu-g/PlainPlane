@@ -13,7 +13,7 @@ class Plane {
     this.posy = y
     this.health = health
     this.maxhp = health
-    this.score = 0
+    this.score = 9999999999
     this.stats = {
       wideshotLv : 1,
       rapidFireLv : 1,
@@ -69,8 +69,6 @@ Plane.prototype.upgradeBullet = function(){
     console.log(`get more than ${req_bullet[this.stats.bulletLv]} points!`)
   }
 }
-
-
 
 function Bullet(){
   this.x = 0

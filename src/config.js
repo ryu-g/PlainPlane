@@ -1,9 +1,9 @@
 const req_wideshot = {
   '1': 2000,
-  '2': 40000
+  '2': 4000
 }
 const req_rapidfire = {
-  '1': 12000
+  '1': 2000
 }
 const req_bullet = {
   '1': 2000,

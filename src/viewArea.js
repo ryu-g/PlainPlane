@@ -7,7 +7,10 @@ import {
   kakashi_bullets, 
   bullets_a,
   bullets_b, 
-  bullets_c 
+  bullets_c,
+  bullets_d,
+  bullets_e, 
+  bullets_f
 } from './global.js'
 import {
   drawPlane,
@@ -36,7 +39,6 @@ function draw(){
   drawHeaderOfKeys(leftSide, 80, view)
   drawKeyMarkers(leftSide, 100, view)
   drawHeaderOfOptions(leftSide, 140, view)
-  // drawOptions(leftSide, 160, view)
   drawOptions_multishoot(leftSide, 160, view)
   drawOptions_rapidFire(leftSide + 70, 160, view)
   drawOptions_bullets(leftSide + 140, 160, view)
@@ -48,6 +50,9 @@ function draw(){
   drawBullets(view, bullets_a)
   drawBullets(view, bullets_b)
   drawBullets(view, bullets_c)
+  drawBullets(view, bullets_d)
+  drawBullets(view, bullets_e)
+  drawBullets(view, bullets_f)
   drawBullets(view, kakashi_bullets)
   // for(let i = 0; i < kakashi_bullets.length; i++){
   //   if(kakashi_bullets[i].alive){

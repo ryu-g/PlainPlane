@@ -53,7 +53,7 @@ import parts_plane from './assets/parts_plane.png'
 import bullet_1 from './assets/bullet_1.png'
 import bullet_2 from './assets/bullet_2.png'
 import bullet_3 from './assets/bullet_3.png'
-import bullet_4 from './assets/bullet_4@2x.png'
+import bullet_4 from './assets/bullet_4.png'
 import kakashi_path from './assets/kakashi@2x.png'
 
 const image_sources= {
@@ -309,7 +309,7 @@ function drawOptions_bullets( Options_posx, Options_posy, view){
   let _upgradebulled_a, _upgradebulled_b, _upgradebulled_c
   if( plane.stats.bulletLv >= 2 ){ _upgradebulled_a = images.upgradebulled_a } else { _upgradebulled_a = images.upgradebulled_a_hide }
   if( plane.stats.bulletLv >= 3 ){ _upgradebulled_b = images.upgradebulled_b } else { _upgradebulled_b = images.upgradebulled_b_hide }
-  if( plane.stats.bulletLv >= 4 ){ _upgradebulled_c = images.upgradebulled_b } else { _upgradebulled_c = images.upgradebulled_b_hide }
+  if( plane.stats.bulletLv >= 4 ){ _upgradebulled_c = images.upgradebulled_c} else { _upgradebulled_c = images.upgradebulled_c_hide }
   view.drawImage(images.defaultbullet, Options_posx, Options_posy + (optionSize + gap_y) * 0, optionSize, optionSize)
   view.drawImage(_upgradebulled_a, Options_posx , Options_posy + (optionSize + gap_y) * 1,  optionSize, optionSize)
   view.drawImage(_upgradebulled_b, Options_posx , Options_posy + (optionSize + gap_y) * 2,  optionSize, optionSize)
@@ -376,9 +376,20 @@ function drawArrows(x,y,isActive,view){
 }
 
 function drawBullets(view, bullets){
+  let kindOfBullet = images.bullet_elipse
+  
+  if( plane.stats.bulletLv == 2 ){
+    kindOfBullet = images.bullet_triangle
+  }
+  if( plane.stats.bulletLv == 3 ){
+    kindOfBullet = images.bullet_rect
+  }
+  if( plane.stats.bulletLv == 4 ){
+    kindOfBullet = images.bullet_star
+  }
   for(let i = 0; i < bullets.length; i++){
     if(bullets[i].alive){
-      view.drawImage(images.bullet_star, bullets[i].x, bullets[i].y)
+      view.drawImage(kindOfBullet, bullets[i].x, bullets[i].y)
     }
   }
 }
