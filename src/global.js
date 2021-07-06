@@ -3,7 +3,7 @@ import { Kakashi, KakashiBullet } from './kakashi.js'
 import { getRandomInt } from './functions_logics.js'
 
 const canvas = document.getElementById('canvas')
-const view = canvas.getContext('2d')
+const view = canvas.getContext('2d', { alpha: false })
 const dpr = window.devicePixelRatio || 1
 const viewWidth = 1024 //window.innerWidth
 const viewHeight = 600 //window.innerHeight

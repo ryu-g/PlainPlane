@@ -34,6 +34,8 @@ const leftSide = 40
 
 function draw() {
   view.clearRect(0, 0, viewWidth, viewHeight)
+  view.fillStyle = 'black'
+  view.fillRect(0, 0, viewWidth, viewHeight)
   rect(viewWidth / 2, 50, viewWidth / 2 - 40, viewHeight - 100, view)
   drawScore(zeroPadding(plane.score), leftSide, 50, view)
   drawHeaderOfKeys(leftSide, 80, view)
