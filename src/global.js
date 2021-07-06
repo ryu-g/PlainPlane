@@ -2,21 +2,30 @@ import { Plane, Bullet } from './Plane.js'
 import { Kakashi, KakashiBullet } from './kakashi.js'
 import { getRandomInt } from './functions_logics.js'
 
-const canvas = document.getElementById('canvas')
-const view = canvas.getContext('2d')
+const mainCanvas = document.getElementById('ui')
+const subCanvas = document.getElementById('battlezone')
+const view = mainCanvas.getContext('2d', { alpha: false })
+const battlefield = subCanvas.getContext('2d')
 const dpr = window.devicePixelRatio || 1
 const viewWidth = 1024 //window.innerWidth
 const viewHeight = 600 //window.innerHeight
-canvas.width = viewWidth * dpr
-canvas.height = viewHeight * dpr
+const battleFieldWidth = 472 //window.innerWidth
+const battleFieldHeight = 500 //window.innerHeight
+mainCanvas.width = viewWidth * dpr
+mainCanvas.height = viewHeight * dpr
+subCanvas.width = battleFieldWidth * dpr
+subCanvas.height = battleFieldHeight * dpr
 view.scale(dpr, dpr)
-canvas.style.width = viewWidth + 'px'
-canvas.style.height = viewHeight + 'px'
+battlefield.scale(dpr, dpr)
+mainCanvas.style.width = viewWidth + 'px'
+mainCanvas.style.height = viewHeight + 'px'
+subCanvas.style.width = battleFieldWidth + 'px'
+subCanvas.style.height = battleFieldHeight + 'px'
 const mousepos = { x: 0, y: 0 }
 
 const MAX_HP = 134
 const plane = new Plane(0, 0, MAX_HP)
-const kakashi = new Kakashi(getRandomInt(542, 945), 60, MAX_HP)
+const kakashi = new Kakashi(getRandomInt(0, 460), 20, MAX_HP)
 
 const BULLETS_MAX_COUNT = 500
 const bullets_a = new Array(BULLETS_MAX_COUNT)
@@ -27,10 +36,10 @@ const bullets_e = new Array(BULLETS_MAX_COUNT)
 const bullets_f = new Array(BULLETS_MAX_COUNT)
 const kakashi_bullets = new Array(BULLETS_MAX_COUNT)
 
-const RIGHT_LIMIT = 960
-const LEFT_LIMIT = 535
+const RIGHT_LIMIT = 448
+const LEFT_LIMIT = 25
 
-canvas.addEventListener('mousemove', (e) => {
+subCanvas.addEventListener('mousemove', (e) => {
   let rect = e.target.getBoundingClientRect()
   mousepos.x = Math.floor(e.clientX - rect.left)
   mousepos.y = Math.floor(e.clientY - rect.top)
@@ -43,8 +52,8 @@ canvas.addEventListener('mousemove', (e) => {
   else {
     plane.posx = mousepos.x
   }
-  plane.posy = viewHeight - 90
-  // console.log(`${plane.posx}, ${plane.posy}`)
+  plane.posy = battleFieldHeight - 40
+  console.log(`${plane.posx}, ${plane.posy}`)
 })
 
 for (let i = 0; i < BULLETS_MAX_COUNT; i++) {
@@ -59,7 +68,7 @@ for (let i = 0; i < BULLETS_MAX_COUNT; i++) {
   kakashi_bullets[i] = new KakashiBullet()
 }
 
-canvas.addEventListener('mousedown', (e) => {
+subCanvas.addEventListener('mousedown', (e) => {
   for (let i = 0; i < BULLETS_MAX_COUNT; i++) {
     if (
       !bullets_a[i].alive &&
@@ -89,13 +98,14 @@ canvas.addEventListener('mousedown', (e) => {
   }
 })
 
-canvas.addEventListener('mouseup', (e) => {
+subCanvas.addEventListener('mouseup', (e) => {
   for (let i = 0; i < BULLETS_MAX_COUNT; i++) {
     if (!kakashi_bullets[i].alive) {
       kakashi_bullets[i].set(kakashi.posx, kakashi.posy, 2)
       break
     }
   }
+  console.log(`${viewWidth / 2}, ${50}, ${viewWidth / 2 - 40}, ${viewHeight - 100}, view`)
 })
 
 window.addEventListener('keydown', (e) => {
@@ -156,9 +166,14 @@ function shoot() {
   }
 }
 export {
+  mainCanvas,
+  subCanvas,
+  view,
   viewWidth,
   viewHeight,
-  view,
+  battlefield,
+  battleFieldWidth,
+  battleFieldHeight,
   BULLETS_MAX_COUNT,
   bullets_a,
   bullets_b,
@@ -166,8 +181,7 @@ export {
   bullets_d,
   bullets_e,
   bullets_f,
+  plane,
+  kakashi,
   kakashi_bullets,
 }
-export { plane }
-export { canvas }
-export { kakashi }
