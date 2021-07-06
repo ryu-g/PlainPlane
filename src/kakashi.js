@@ -1,4 +1,4 @@
-import { plane } from './global'
+import { battleFieldHeight, plane } from './global'
 
 class Kakashi {
   constructor(x, y, health) {
@@ -34,10 +34,10 @@ KakashiBullet.prototype.set = function (x, y, speed) {
 KakashiBullet.prototype.move = function () {
   //かかしの玉
   this.y += this.speed
-  if (this.y > 530) {
+  if (this.y > battleFieldHeight) {
     this.alive = false
   } else if (
-    this.y > 470 &&
+    this.y > 440 &&
     plane.posx - 25 < this.x &&
     this.x < plane.posx + 25
   ) {
