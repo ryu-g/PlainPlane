@@ -1,4 +1,4 @@
-import { Plane } from "./Plane"
+import { Plane } from './Plane'
 //スコアをもとに処理する部分
 
 //強化オプションのリスト
@@ -14,4 +14,3 @@ import { Plane } from "./Plane"
 
 //それぞれ、レベルアップ/回復の関数を実行する
 //各レベルはPlaneの中に格納する
-
