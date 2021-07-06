@@ -5,19 +5,17 @@ import { loadImages } from './functions_img'
 import { proc } from './mainproc'
 import { draw } from './viewArea'
 
-console.log("add eventListener...")
-console.log("setting canvas window...")
-console.log("task name")
-console.log("task name")
-console.log("task name")
-console.log("task name")
+console.log('add eventListener...')
+console.log('setting canvas window...')
+console.log('task name')
+console.log('task name')
+console.log('task name')
+console.log('task name')
 
-const mainProc = () =>{
+const mainProc = () => {
   proc()
   draw()
   setTimeout(mainProc, 10) // Nfps
 }
 
-loadImages().then(
-  mainProc()
-)
+loadImages().then(mainProc())
