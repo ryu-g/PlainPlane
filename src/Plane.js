@@ -1,4 +1,4 @@
-import { plane, kakashi } from './global.js'
+import { plane, kakashi, battleFieldWidth } from './global.js'
 import { getRandomInt } from './functions_logics.js'
 import { req_wideshot, req_rapidfire, req_bullet, req_heal } from './config.js'
 
@@ -83,7 +83,7 @@ Bullet.prototype.set = function (x, y, speed) {
 
 Bullet.prototype.move = function () {
   this.y -= this.speed
-  if (this.y < 60) {
+  if (this.y < 0 || this.x < 0 || battleFieldWidth < this.x) {
     this.alive = false
   } else if (
     this.y < 134 &&
@@ -93,7 +93,7 @@ Bullet.prototype.move = function () {
     plane.score += 91
     this.alive = false
     kakashi.health -= 1
-    kakashi.posx = getRandomInt(542, 945)
+    kakashi.posx = getRandomInt(0, 440)
   }
 }
 

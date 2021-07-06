@@ -11,6 +11,9 @@ import {
   bullets_d,
   bullets_e,
   bullets_f,
+  battlefield,
+  battleFieldHeight,
+  battleFieldWidth,
 } from './global.js'
 import {
   drawPlane,
@@ -34,6 +37,7 @@ const leftSide = 40
 
 function draw() {
   view.clearRect(0, 0, viewWidth, viewHeight)
+  battlefield.clearRect(0, 0, battleFieldWidth, battleFieldHeight)
   view.fillStyle = 'black'
   view.fillRect(0, 0, viewWidth, viewHeight)
   rect(viewWidth / 2, 50, viewWidth / 2 - 40, viewHeight - 100, view)
@@ -47,15 +51,15 @@ function draw() {
   drawOptions_heals(leftSide + 210, 160, view)
   drawPlayerHealth(viewWidth / 2, viewHeight - 34, view)
   drawKakashiHealth(viewWidth / 2, 17, view)
-  drawPlane(plane.posx, viewHeight - 90, view)
-  drawKakashi(kakashi.posx, kakashi.posy, view)
-  drawBullets(view, bullets_a)
-  drawBullets(view, bullets_b)
-  drawBullets(view, bullets_c)
-  drawBullets(view, bullets_d)
-  drawBullets(view, bullets_e)
-  drawBullets(view, bullets_f)
-  drawBullets(view, kakashi_bullets)
+  drawPlane(plane.posx, battleFieldHeight - 40, battlefield)
+  drawKakashi(kakashi.posx, kakashi.posy, battlefield)
+  drawBullets(battlefield, bullets_a)
+  drawBullets(battlefield, bullets_b)
+  drawBullets(battlefield, bullets_c)
+  drawBullets(battlefield, bullets_d)
+  drawBullets(battlefield, bullets_e)
+  drawBullets(battlefield, bullets_f)
+  drawBullets(battlefield, kakashi_bullets)
   // for(let i = 0; i < kakashi_bullets.length; i++){
   //   if(kakashi_bullets[i].alive){
   //     drawBullets(kakashi_bullets[i].x, kakashi_bullets[i].y, view)
