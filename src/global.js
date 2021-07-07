@@ -105,7 +105,9 @@ subCanvas.addEventListener('mouseup', (e) => {
       break
     }
   }
-  console.log(`${viewWidth / 2}, ${50}, ${viewWidth / 2 - 40}, ${viewHeight - 100}, view`)
+  console.log(
+    `${viewWidth / 2}, ${50}, ${viewWidth / 2 - 40}, ${viewHeight - 100}, view`
+  )
 })
 
 window.addEventListener('keydown', (e) => {
