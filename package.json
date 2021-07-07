@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel ./src/index.pug --open",
+    "dev": "npm run watch:prettier & parcel ./src/index.pug --open",
     "prettier": "prettier src/*.js --write",
-    "start": "parcel ./src/index.pug --open"
+    "start": "parcel ./src/index.pug --open",
+    "watch:prettier": "onchange src/*.js -- npm run prettier"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "onchange": "^7.1.0",
     "parcel-bundler": "^1.12.5",
     "prettier": "^2.3.2",
     "pug": "^3.0.2",
