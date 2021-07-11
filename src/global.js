@@ -153,7 +153,6 @@ function shoot() {
       if (plane.stats.wideshotLv % 2 == 1) {
         bullets_a[i].set(plane.posx - 5, plane.posy, 2)
         if (plane.stats.rapidFireLv == 2) {
-          console.log('hello from rapidfire')
           bullets_d[i].set(plane.posx - 5, plane.posy, 1)
         }
       }

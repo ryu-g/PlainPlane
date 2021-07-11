@@ -28,7 +28,10 @@ function setNumsDY(array, pscore, score){
   let scorenums = zeroPadding(score.toString())
   for(let i = 0 ; i < scorenums.length; i++){
     if(scorenums[i] != pscorenums[i])
-      array[i] = 16
+      while(i < scorenums.length){
+        array[i] = 16
+        i++
+      }
   }
 }
 
