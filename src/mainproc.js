@@ -6,10 +6,17 @@ import {
   bullets_e,
   bullets_f,
   kakashi_bullets,
+  score_nums_dy,
 } from './global.js'
-import { moveAllBullets, kakashi_moveAllBullets } from './functions_logics'
+
+import {
+  moveAllBullets,
+  kakashi_moveAllBullets,
+  updateScoreDY,
+} from './functions_logics'
 
 const proc = () => {
+  updateScoreDY(score_nums_dy)
   moveAllBullets(bullets_a)
   moveAllBullets(bullets_b)
   moveAllBullets(bullets_c)

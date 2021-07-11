@@ -1,5 +1,5 @@
-import { plane, kakashi, battleFieldWidth } from './global.js'
-import { getRandomInt } from './functions_logics.js'
+import { plane, kakashi, battleFieldWidth, score_nums_dy } from './global.js'
+import { getRandomInt, setNumsDY } from './functions_logics.js'
 import { req_wideshot, req_rapidfire, req_bullet, req_heal } from './config.js'
 
 class Plane {
@@ -9,6 +9,7 @@ class Plane {
     this.health = health
     this.maxhp = health
     this.score = 9999999999
+    this.prevScore = this.score
     this.stats = {
       wideshotLv: 1,
       rapidFireLv: 1,
@@ -67,6 +68,12 @@ class Plane {
       console.log(`get more than ${req_bullet[this.stats.bulletLv]} points!`)
     }
   }
+
+  addScore( mount ){
+    this.prevScore = this.score
+    this.score += mount
+    setNumsDY(score_nums_dy, plane.prevScore, plane.score)
+  }
 }
 
 class Bullet {
@@ -93,7 +100,7 @@ class Bullet {
       kakashi.posx < this.x &&
       this.x < kakashi.posx + 50
     ) {
-      plane.score += 91
+      plane.addScore(91)
       this.alive = false
       kakashi.health -= 1
       kakashi.posx = getRandomInt(0, 440)

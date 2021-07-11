@@ -220,8 +220,9 @@ function drawPlayerHealth(Health_posx, Health_posy, view) {
   }
 }
 
-function drawScore(score, score_posx, score_posy, view) {
+function drawScore(score, score_posx, score_posy, _score_nums_dy, view) {
   const s = score
+  const posDY = _score_nums_dy
   const numw = images.num_0_active.width / 2
   const numh = images.num_0_active.height / 2
   const label_w = images.label_score.width / 2
@@ -268,7 +269,10 @@ function drawScore(score, score_posx, score_posy, view) {
         targetImage = images.num_9
         break
     }
-    view.drawImage(targetImage, score_posx + posx_gap, score_posy, numw, numh)
+    view.drawImage(targetImage,
+      score_posx + posx_gap,
+      score_posy + posDY[i],
+      numw, numh)
   }
 }
 

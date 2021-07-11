@@ -36,6 +36,9 @@ const bullets_e = new Array(BULLETS_MAX_COUNT)
 const bullets_f = new Array(BULLETS_MAX_COUNT)
 const kakashi_bullets = new Array(BULLETS_MAX_COUNT)
 
+const SCORE_LENGTH = 14
+const score_nums_dy = new Array(SCORE_LENGTH).fill(0)
+
 const RIGHT_LIMIT = 448
 const LEFT_LIMIT = 25
 
@@ -53,7 +56,7 @@ subCanvas.addEventListener('mousemove', (e) => {
     plane.posx = mousepos.x
   }
   plane.posy = battleFieldHeight - 40
-  console.log(`${plane.posx}, ${plane.posy}`)
+  // console.log(`${plane.posx}, ${plane.posy}`)
 })
 
 for (let i = 0; i < BULLETS_MAX_COUNT; i++) {
@@ -81,7 +84,6 @@ subCanvas.addEventListener('mousedown', (e) => {
       if (plane.stats.wideshotLv % 2 == 1) {
         bullets_a[i].set(plane.posx - 5, plane.posy, 2)
         if (plane.stats.rapidFireLv == 2) {
-          console.log('hello from rapidfire')
           bullets_d[i].set(plane.posx - 5, plane.posy, 1)
         }
       }
@@ -105,9 +107,9 @@ subCanvas.addEventListener('mouseup', (e) => {
       break
     }
   }
-  console.log(
-    `${viewWidth / 2}, ${50}, ${viewWidth / 2 - 40}, ${viewHeight - 100}, view`
-  )
+  // console.log(
+  //   `${viewWidth / 2}, ${50}, ${viewWidth / 2 - 40}, ${viewHeight - 100}, view`
+  // )
 })
 
 window.addEventListener('keydown', (e) => {
@@ -183,6 +185,7 @@ export {
   bullets_d,
   bullets_e,
   bullets_f,
+  score_nums_dy,
   plane,
   kakashi,
   kakashi_bullets,
