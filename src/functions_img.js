@@ -230,10 +230,10 @@ function drawScore(score, score_posx, score_posy, view) {
   const nums = s.split('')
   let posx_gap = 55
   view.drawImage(images.label_score, score_posx, score_posy, label_w, label_h)
-  for (let num of nums) {
+  for (let i = 0; i< nums.length; i++) {
     let targetImage = ''
     posx_gap += 14
-    switch (num) {
+    switch (nums[i]) {
       case '_':
         targetImage = images.num_0_nonactive
         break
